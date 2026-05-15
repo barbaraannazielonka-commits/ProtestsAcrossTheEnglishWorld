@@ -1,0 +1,2634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice of a Generation — Youth Protests in English-Speaking Countries</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0d;
+    --paper: #f5f0e8;
+    --cream: #faf7f2;
+    --red: #c0392b;
+    --red-light: #e8504a;
+    --blue: #1a3a5c;
+    --blue-light: #2255a4;
+    --gold: #c9a227;
+    --green: #1a6b3c;
+    --green-light: #27a560;
+    --purple: #5b2d8e;
+    --gray: #6b6b6b;
+    --light-gray: #e8e3da;
+    --shadow: 0 4px 24px rgba(15,14,13,0.12);
+    --shadow-lg: 0 12px 48px rgba(15,14,13,0.18);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ──────────────────────────────────────────
+     PAGES SYSTEM
+  ────────────────────────────────────────── */
+  .page { display: none; min-height: 100vh; }
+  .page.active { display: block; }
+
+  /* ──────────────────────────────────────────
+     NAV
+  ────────────────────────────────────────── */
+  nav {
+    position: sticky; top: 0; z-index: 1000;
+    background: var(--ink);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 64px;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--paper);
+    font-size: 1.1rem;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex; gap: 0.25rem; align-items: center;
+    list-style: none;
+  }
+  .nav-links li button {
+    background: none; border: none; cursor: pointer;
+    color: rgba(245,240,232,0.7);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .nav-links li button:hover,
+  .nav-links li button.active {
+    color: var(--paper);
+    background: rgba(255,255,255,0.1);
+  }
+  .nav-links li button.active { color: var(--gold); }
+
+  /* ──────────────────────────────────────────
+     HERO (HOME)
+  ────────────────────────────────────────── */
+  .hero {
+    background: var(--ink);
+    min-height: 92vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,0.025) 60px,
+      rgba(255,255,255,0.025) 61px
+    );
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 900; color: var(--paper);
+    line-height: 1.0;
+    max-width: 900px;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+  .hero h1 em { color: var(--red-light); font-style: italic; }
+  .hero-sub {
+    max-width: 600px; margin: 2rem auto 0;
+    font-size: 1.1rem; font-weight: 300;
+    color: rgba(245,240,232,0.7); line-height: 1.7;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; margin-top: 3rem;
+    flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+  .btn-primary {
+    background: var(--red); color: var(--paper);
+    border: none; padding: 0.9rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; border-radius: 3px;
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent; color: var(--paper);
+    border: 1.5px solid rgba(245,240,232,0.35);
+    padding: 0.9rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: pointer; border-radius: 3px;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--paper); transform: translateY(-2px); }
+
+  /* Stat strip */
+  .stat-strip {
+    background: var(--red);
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
+  }
+  .stat-item {
+    flex: 1; min-width: 160px; max-width: 220px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-right: 1px solid rgba(255,255,255,0.2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem; font-weight: 900;
+    color: var(--paper);
+  }
+  .stat-label {
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(255,255,255,0.8);
+    margin-top: 0.25rem;
+  }
+
+  /* Country cards (home) */
+  .section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gray);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-lead {
+    font-size: 1.05rem; color: var(--gray);
+    line-height: 1.7; max-width: 680px;
+    margin-bottom: 3rem;
+  }
+
+  .country-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .country-card {
+    border-radius: 6px; overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: var(--shadow);
+    background: white;
+  }
+  .country-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .card-header {
+    padding: 2rem 1.75rem 1.5rem;
+    position: relative;
+  }
+  .card-flag {
+    font-size: 2.5rem; margin-bottom: 0.75rem;
+    display: block;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .card-subtitle {
+    font-size: 0.82rem; font-weight: 500;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 1rem;
+  }
+  .card-body { padding: 0 1.75rem 1.75rem; }
+  .card-desc {
+    font-size: 0.9rem; color: var(--gray);
+    line-height: 1.65; margin-bottom: 1.25rem;
+  }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  .tag-red { background: #fde8e7; color: var(--red); }
+  .tag-blue { background: #e3eaf7; color: var(--blue); }
+  .tag-green { background: #e0f5ea; color: var(--green); }
+  .tag-purple { background: #ede3f8; color: var(--purple); }
+  .tag-gold { background: #f8f1dd; color: #8a6d00; }
+
+  .card-uk { border-top: 4px solid var(--blue); }
+  .card-usa { border-top: 4px solid var(--red); }
+  .card-why { border-top: 4px solid var(--gold); }
+
+  /* ──────────────────────────────────────────
+     INNER PAGE HERO
+  ────────────────────────────────────────── */
+  .page-hero {
+    padding: 5rem 2rem 3.5rem;
+    position: relative;
+  }
+  .page-hero-inner { max-width: 1100px; margin: 0 auto; }
+  .breadcrumb {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gray);
+    margin-bottom: 1.25rem; cursor: pointer;
+  }
+  .breadcrumb:hover { color: var(--ink); }
+  .breadcrumb::before { content: '← '; }
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900; line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .page-hero p {
+    font-size: 1.1rem; color: var(--gray);
+    line-height: 1.7; max-width: 720px;
+  }
+  .page-hero-uk { background: linear-gradient(135deg, #eef2f9 0%, #dce6f5 100%); }
+  .page-hero-uk h1 em { color: var(--blue-light); }
+  .page-hero-usa { background: linear-gradient(135deg, #fdf0ef 0%, #f8dedd 100%); }
+  .page-hero-usa h1 em { color: var(--red); }
+  .page-hero-why { background: linear-gradient(135deg, #fdf8ec 0%, #f5e8bb 100%); }
+  .page-hero-why h1 em { color: var(--gold); }
+
+  /* ──────────────────────────────────────────
+     PROTEST BLOCKS
+  ────────────────────────────────────────── */
+  .protests-container {
+    max-width: 1100px; margin: 0 auto;
+    padding: 0 2rem 6rem;
+  }
+  .protest-block {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s;
+  }
+  .protest-block:hover { box-shadow: var(--shadow-lg); }
+  .protest-sidebar {
+    padding: 2rem 1.5rem;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .protest-content { padding: 2rem 2rem 2rem 0; }
+  .protest-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .protest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; font-weight: 700;
+    line-height: 1.2; margin-bottom: 0.75rem;
+  }
+  .protest-desc {
+    font-size: 0.92rem; line-height: 1.75;
+    color: #444; margin-bottom: 1.25rem;
+  }
+  .protest-fact-box {
+    background: var(--light-gray);
+    border-radius: 5px; padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .protest-fact-box h4 {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 0.6rem;
+  }
+  .protest-fact-box ul {
+    list-style: none; padding: 0;
+  }
+  .protest-fact-box ul li {
+    font-size: 0.88rem; padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    display: flex; gap: 0.5rem;
+  }
+  .protest-fact-box ul li:last-child { border-bottom: none; }
+  .protest-fact-box ul li::before { content: '→'; color: var(--gray); }
+  .protest-icon {
+    font-size: 3rem; margin-bottom: 1rem;
+  }
+  .sidebar-uk { background: linear-gradient(160deg, #1a3a5c 0%, #2255a4 100%); color: white; }
+  .sidebar-uk .protest-year { color: rgba(255,255,255,0.6); }
+  .sidebar-uk .protest-name { color: white; }
+  .sidebar-usa { background: linear-gradient(160deg, #8b1a1a 0%, #c0392b 100%); color: white; }
+  .sidebar-usa .protest-year { color: rgba(255,255,255,0.6); }
+  .sidebar-usa .protest-name { color: white; }
+  .sidebar-green { background: linear-gradient(160deg, #0f4025 0%, #1a6b3c 100%); color: white; }
+  .sidebar-green .protest-year { color: rgba(255,255,255,0.6); }
+  .sidebar-green .protest-name { color: white; }
+  .sidebar-purple { background: linear-gradient(160deg, #3a1a5c 0%, #5b2d8e 100%); color: white; }
+  .sidebar-purple .protest-year { color: rgba(255,255,255,0.6); }
+  .sidebar-purple .protest-name { color: white; }
+  .sidebar-gold { background: linear-gradient(160deg, #5c3d0a 0%, #9a7010 100%); color: white; }
+  .sidebar-gold .protest-year { color: rgba(255,255,255,0.6); }
+  .sidebar-gold .protest-name { color: white; }
+
+  /* Video & Article links */
+  .resource-section { margin-top: 1.5rem; }
+  .resource-section h4 {
+    font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gray); margin-bottom: 0.75rem;
+  }
+  .resource-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .resource-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.82rem; font-weight: 500;
+    padding: 0.45rem 0.9rem;
+    border-radius: 3px; text-decoration: none;
+    transition: all 0.15s;
+    cursor: pointer; border: none;
+  }
+  .link-video {
+    background: #fee2e2; color: #b91c1c;
+  }
+  .link-video:hover { background: #fca5a5; }
+  .link-article {
+    background: #e0e7ff; color: #3730a3;
+  }
+  .link-article:hover { background: #c7d2fe; }
+  .link-source {
+    background: #f0fdf4; color: #166534;
+  }
+  .link-source:hover { background: #bbf7d0; }
+
+  /* ──────────────────────────────────────────
+     WHY PROTEST PAGE
+  ────────────────────────────────────────── */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+  .why-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+  }
+  .why-icon {
+    font-size: 2.5rem; margin-bottom: 1rem;
+  }
+  .why-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .why-text {
+    font-size: 0.92rem; line-height: 1.75;
+    color: #444;
+  }
+  .quote-block {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 8px;
+    padding: 3rem;
+    margin: 3rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .quote-block::before {
+    content: '"';
+    position: absolute; top: -1rem; left: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem; color: rgba(255,255,255,0.05);
+    line-height: 1;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-style: italic;
+    line-height: 1.5; position: relative;
+    max-width: 780px;
+  }
+  .quote-source {
+    margin-top: 1.5rem;
+    font-size: 0.82rem; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* Psychology section */
+  .psych-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+    margin: 2rem 0 4rem;
+  }
+  .psych-card {
+    background: white; border-radius: 8px;
+    padding: 1.75rem; box-shadow: var(--shadow);
+    border-left: 4px solid var(--gold);
+  }
+  .psych-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 900;
+    color: var(--light-gray); line-height: 1;
+    margin-bottom: 0.75rem;
+  }
+  .psych-title {
+    font-weight: 700; font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .psych-text {
+    font-size: 0.88rem; color: var(--gray);
+    line-height: 1.65;
+  }
+
+  /* ──────────────────────────────────────────
+     CHAPTER DIVIDERS
+  ────────────────────────────────────────── */
+  .chapter {
+    padding: 2.5rem 2rem 0;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .chapter-label {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .chapter-line { flex: 1; height: 1px; background: var(--light-gray); }
+  .chapter-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gray);
+    white-space: nowrap;
+  }
+
+  /* ──────────────────────────────────────────
+     TIMELINE
+  ────────────────────────────────────────── */
+  .timeline {
+    position: relative; padding: 1rem 0;
+    max-width: 800px; margin: 0 auto 4rem;
+  }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 50%; transform: translateX(-50%);
+    top: 0; bottom: 0; width: 2px;
+    background: var(--light-gray);
+  }
+  .timeline-item {
+    display: flex; gap: 2rem;
+    margin-bottom: 2.5rem; position: relative;
+  }
+  .timeline-item:nth-child(odd) { flex-direction: row-reverse; }
+  .timeline-content {
+    flex: 1; background: white;
+    border-radius: 6px; padding: 1.5rem;
+    box-shadow: var(--shadow);
+  }
+  .timeline-dot {
+    width: 14px; height: 14px;
+    border-radius: 50%; background: var(--red);
+    border: 3px solid var(--paper);
+    box-shadow: 0 0 0 2px var(--red);
+    flex-shrink: 0; align-self: center;
+    position: absolute; left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  .timeline-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--red); letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .timeline-event { font-weight: 600; margin-bottom: 0.4rem; }
+  .timeline-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.6; }
+
+  /* ──────────────────────────────────────────
+     FOOTER
+  ────────────────────────────────────────── */
+  footer {
+    background: var(--ink); color: rgba(245,240,232,0.6);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+  footer p { font-size: 0.85rem; line-height: 1.7; }
+  footer strong { color: var(--paper); }
+
+  /* ──────────────────────────────────────────
+     KEYFRAMES
+  ────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ──────────────────────────────────────────
+     RESPONSIVE
+  ────────────────────────────────────────── */
+  @media (max-width: 768px) {
+    nav { padding: 0 1rem; }
+    .nav-links li button { font-size: 0.7rem; padding: 0.4rem 0.5rem; }
+    .protest-block { grid-template-columns: 1fr; }
+    .protest-content { padding: 0 1.5rem 1.5rem; }
+    .timeline::before { left: 20px; }
+    .timeline-item, .timeline-item:nth-child(odd) { flex-direction: column; padding-left: 50px; }
+    .timeline-dot { left: 20px; }
+  }
+
+  /* ──────────────────────────────────────────
+     HIGHLIGHT BOX
+  ────────────────────────────────────────── */
+  .highlight-box {
+    background: linear-gradient(135deg, #1a3a5c, #2255a4);
+    color: white; border-radius: 8px;
+    padding: 2rem 2.5rem; margin: 2rem 0;
+  }
+  .highlight-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; margin-bottom: 0.75rem;
+  }
+  .highlight-box p { font-size: 0.92rem; line-height: 1.7; opacity: 0.9; }
+
+  .note-box {
+    border-left: 4px solid var(--gold);
+    background: #fffbee;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 6px 6px 0;
+    margin: 1.5rem 0;
+    font-size: 0.9rem; line-height: 1.7;
+  }
+  .note-box strong { color: var(--ink); }
+
+  /* ──────────────────────────────────────────
+     VOCAB PAGE
+  ────────────────────────────────────────── */
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+  .vocab-card {
+    background: white; border-radius: 8px;
+    padding: 1.5rem; box-shadow: var(--shadow);
+    border-top: 4px solid var(--blue);
+  }
+  .vocab-term {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.95rem; font-weight: 500;
+    color: var(--blue); margin-bottom: 0.4rem;
+    letter-spacing: 0.04em;
+  }
+  .vocab-pos {
+    font-size: 0.72rem; font-style: italic;
+    color: var(--gray); margin-bottom: 0.6rem;
+    letter-spacing: 0.06em;
+  }
+  .vocab-def {
+    font-size: 0.9rem; line-height: 1.65; color: #444;
+    margin-bottom: 0.6rem;
+  }
+  .vocab-example {
+    font-size: 0.82rem; color: var(--gray);
+    font-style: italic; border-left: 3px solid var(--light-gray);
+    padding-left: 0.75rem; line-height: 1.6;
+  }
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem; margin-bottom: 3rem;
+  }
+  .type-card {
+    background: white; border-radius: 8px;
+    padding: 1.5rem; box-shadow: var(--shadow);
+    border-left: 4px solid var(--gold);
+  }
+  .type-title {
+    font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem;
+  }
+  .type-desc { font-size: 0.88rem; color: var(--gray); line-height: 1.65; }
+
+  /* ──────────────────────────────────────────
+     PODCAST PAGE
+  ────────────────────────────────────────── */
+  .podcast-card {
+    background: white; border-radius: 8px;
+    padding: 1.75rem; box-shadow: var(--shadow);
+    margin-bottom: 1.25rem;
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 1.25rem; align-items: start;
+    transition: box-shadow 0.2s;
+  }
+  .podcast-card:hover { box-shadow: var(--shadow-lg); }
+  .podcast-flag { font-size: 2.2rem; line-height: 1; }
+  .podcast-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+  .podcast-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gray);
+    margin-bottom: 0.6rem;
+  }
+  .podcast-desc { font-size: 0.88rem; color: #444; line-height: 1.65; margin-bottom: 0.75rem; }
+  .podcast-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.8rem; font-weight: 600;
+    padding: 0.4rem 0.9rem; border-radius: 3px;
+    text-decoration: none; background: #e0e7ff; color: #3730a3;
+    transition: background 0.15s;
+  }
+  .podcast-link:hover { background: #c7d2fe; }
+
+  /* ──────────────────────────────────────────
+     NO KINGS PAGE
+  ────────────────────────────────────────── */
+  .nokings-hero {
+    background: linear-gradient(135deg, #1a0a00 0%, #3d1a00 50%, #1a0a00 100%);
+    padding: 5rem 2rem 3.5rem;
+  }
+  .nokings-hero-inner { max-width: 1100px; margin: 0 auto; }
+
+  /* ──────────────────────────────────────────
+     GLOBAL FOOTER ATTRIBUTION
+  ────────────────────────────────────────── */
+  .site-attribution {
+    background: #080807;
+    padding: 1.25rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.07);
+  }
+  .site-attribution p {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.45);
+    letter-spacing: 0.04em;
+  }
+  .site-attribution strong {
+    color: var(--gold);
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAVIGATION ═══════════════════ -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">Voice of a <span>Generation</span></div>
+  <ul class="nav-links">
+    <li><button onclick="showPage('home')" id="nav-home" class="active">Home</button></li>
+    <li><button onclick="showPage('uk')" id="nav-uk">🇬🇧 UK Protests</button></li>
+    <li><button onclick="showPage('usa')" id="nav-usa">🇺🇸 USA Protests</button></li>
+    <li><button onclick="showPage('aus')" id="nav-aus">🇦🇺 Australia</button></li>
+    <li><button onclick="showPage('sa')" id="nav-sa">🇿🇦 South Africa</button></li>
+    <li><button onclick="showPage('why')" id="nav-why">Why Protest?</button></li>
+    <li><button onclick="showPage('vocab')" id="nav-vocab">📖 Vocabulary</button></li>
+    <li><button onclick="showPage('podcasts')" id="nav-podcasts">🎙 Podcasts</button></li>
+    <li><button onclick="showPage('resources')" id="nav-resources">Resources</button></li>
+  </ul>
+</nav>
+
+<!-- ═══════════════════ HOME PAGE ═══════════════════ -->
+<div id="page-home" class="page active">
+
+  <section class="hero">
+    <p class="hero-eyebrow">Educational Resource for High School Students</p>
+    <h1>The <em>Voices</em> That Changed the World</h1>
+    <p class="hero-sub">Explore the most important youth-led and youth-supported protests in English-speaking countries — what happened, why it mattered, and what you can learn from it.</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="showPage('uk')">Explore UK Protests</button>
+      <button class="btn-primary" onclick="showPage('usa')" style="background:var(--red-light)">Explore USA Protests</button>
+      <button class="btn-primary" onclick="showPage('aus')" style="background:var(--green)">Explore Australia Protests</button>
+      <button class="btn-primary" onclick="showPage('sa')" style="background:#1a7a3c">Explore South Africa Protests</button>
+      <button class="btn-secondary" onclick="showPage('why')">Why Do Young People Protest?</button>
+    </div>
+  </section>
+
+  <div class="stat-strip">
+    <div class="stat-item">
+      <div class="stat-number">2M+</div>
+      <div class="stat-label">March for Our Lives attendees (2018)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">260+</div>
+      <div class="stat-label">UK cities held BLM protests (2020)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">800+</div>
+      <div class="stat-label">Global MFOL marches in 1 day</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">4M+</div>
+      <div class="stat-label">Fridays for Future global strikers (Sept 2019)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">100K+</div>
+      <div class="stat-label">Pro-Palestine UK march (Nov 2023)</div>
+    </div>
+  </div>
+
+  <section class="section" style="background:var(--cream)">
+    <div class="section-inner">
+      <p class="section-tag">What's Inside</p>
+      <h2 class="section-title">Choose Your Topic</h2>
+      <p class="section-lead">This website covers major protests in English-speaking countries, focusing on movements where young people played a major role. Click any card to start exploring.</p>
+
+      <div class="country-grid">
+        <div class="country-card card-uk" onclick="showPage('uk')">
+          <div class="card-header" style="background:#f0f4fb">
+            <span class="card-flag">🇬🇧</span>
+            <div class="card-subtitle">United Kingdom</div>
+            <div class="card-title">UK Protests</div>
+          </div>
+          <div class="card-body">
+            <p class="card-desc">From Black Lives Matter marches in London to Extinction Rebellion blockades and Sarah Everard vigils — the UK has seen major youth-driven demonstrations across many issues.</p>
+            <div class="tag-row">
+              <span class="tag tag-blue">Racial Justice</span>
+              <span class="tag tag-green">Climate</span>
+              <span class="tag tag-purple">Women's Safety</span>
+              <span class="tag tag-gold">Brexit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="country-card card-usa" onclick="showPage('usa')">
+          <div class="card-header" style="background:#fdf2f2">
+            <span class="card-flag">🇺🇸</span>
+            <div class="card-subtitle">United States of America</div>
+            <div class="card-title">USA Protests</div>
+          </div>
+          <div class="card-body">
+            <p class="card-desc">From the historic March for Our Lives against gun violence to racial justice demonstrations and immigrant rights campaigns — American youth have taken the streets repeatedly.</p>
+            <div class="tag-row">
+              <span class="tag tag-red">Gun Violence</span>
+              <span class="tag tag-red">Racial Justice</span>
+              <span class="tag tag-blue">Immigration</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="country-card" style="border-top:4px solid var(--green)" onclick="showPage('aus')">
+          <div class="card-header" style="background:#edf8f2">
+            <span class="card-flag">🇦🇺</span>
+            <div class="card-subtitle">Australia</div>
+            <div class="card-title">Australian Protests</div>
+          </div>
+          <div class="card-body">
+            <p class="card-desc">From School Strike 4 Climate marches in every major city to pro-Palestine campus encampments and Indigenous rights demonstrations — Australian youth have built some of the most visible activist movements in the Asia-Pacific.</p>
+            <div class="tag-row">
+              <span class="tag tag-green">Climate</span>
+              <span class="tag tag-blue">Palestine</span>
+              <span class="tag tag-red">Indigenous Rights</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="country-card" style="border-top:4px solid #1a7a3c" onclick="showPage('sa')">
+          <div class="card-header" style="background:#edf7f1">
+            <span class="card-flag">🇿🇦</span>
+            <div class="card-subtitle">South Africa</div>
+            <div class="card-title">South African Protests</div>
+          </div>
+          <div class="card-body">
+            <p class="card-desc">Anti-immigration marches, xenophobic violence fears, and ongoing protests over inequality and the cost of living — South Africa's protest landscape reflects deep social tensions and economic hardship facing millions.</p>
+            <div class="tag-row">
+              <span class="tag tag-red">Immigration</span>
+              <span class="tag tag-gold">Inequality</span>
+              <span class="tag tag-green">Cost of Living</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="country-card card-why" onclick="showPage('why')">
+          <div class="card-header" style="background:#fdf8ec">
+            <span class="card-flag">🧠</span>
+            <div class="card-subtitle">Psychology & Sociology</div>
+            <div class="card-title">Why Young People Protest</div>
+          </div>
+          <div class="card-body">
+            <p class="card-desc">What drives young people to take to the streets? Explore the psychological, social, and political reasons behind youth activism — backed by research from UNICEF and universities.</p>
+            <div class="tag-row">
+              <span class="tag tag-gold">Research</span>
+              <span class="tag tag-green">Psychology</span>
+              <span class="tag tag-purple">Identity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline overview -->
+  <section class="section">
+    <div class="section-inner">
+      <p class="section-tag">Historical Overview</p>
+      <h2 class="section-title">Key Moments in Youth Protest History</h2>
+      <p class="section-lead">A timeline of major protests where young people played a central or leading role.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">2018 — USA</div>
+            <div class="timeline-event">March for Our Lives</div>
+            <div class="timeline-desc">Parkland students organise one of the largest youth-led protests in US history. Approximately 2 million people participate in over 800 cities worldwide, demanding gun control.</div>
+          </div>
+          <div class="timeline-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div style="flex:1"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2018–present — Global</div>
+            <div class="timeline-event">Fridays for Future</div>
+            <div class="timeline-desc">Greta Thunberg's school strike sparks a worldwide movement. In September 2019 alone, over 4 million people strike in 161 countries, including mass turnout in UK cities.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">2019 — UK</div>
+            <div class="timeline-event">Extinction Rebellion</div>
+            <div class="timeline-desc">XR organises its largest civil disobedience actions in London. Thousands block bridges and key roads for two weeks, with hundreds of arrests. Many university and school students participate.</div>
+          </div>
+          <div class="timeline-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div style="flex:1"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2020 — UK & USA</div>
+            <div class="timeline-event">Black Lives Matter</div>
+            <div class="timeline-desc">Following George Floyd's murder, protests erupt across both countries. In the UK, over 260 towns and cities hold demonstrations. A new generation of young Black Britons leads the movement.</div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-year">2021 — UK</div>
+            <div class="timeline-event">Sarah Everard Vigils</div>
+            <div class="timeline-desc">After the murder of Sarah Everard, women across the UK organise vigils and marches demanding action on violence against women. Police handling of the vigil provokes further protests.</div>
+          </div>
+          <div class="timeline-dot"></div>
+          <div style="flex:1"></div>
+        </div>
+
+        <div class="timeline-item">
+          <div style="flex:1"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2023–present — UK & USA</div>
+            <div class="timeline-event">Pro-Palestine Protests</div>
+            <div class="timeline-desc">Following the October 7 Hamas attack and subsequent Israeli military campaign in Gaza, hundreds of thousands protest in London and across the US. University encampments form at dozens of campuses.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Voice of a Generation</strong> — An educational resource for high school students.<br>
+    Content is based on verified reporting from BBC, NPR, The Guardian, UK Parliament, UNICEF, and academic sources.<br>
+    For educational use. All sources are linked throughout the site.</p>
+  </footer>
+  <div class="site-attribution">
+    <p>Created by <strong>Barbara Anna Zielonka</strong> — Nannestad High School</p>
+  </div>
+</div><!-- end home -->
+
+
+<!-- ═══════════════════ UK PAGE ═══════════════════ -->
+<div id="page-uk" class="page">
+
+  <div class="page-hero page-hero-uk">
+    <div class="page-hero-inner">
+      <p class="breadcrumb" onclick="showPage('home')">Home</p>
+      <h1>🇬🇧 Protests in the <em>United Kingdom</em></h1>
+      <p>A guide to the major protest movements that have shaped British society — from racial justice and climate action to women's safety and Brexit. Many of these were organised or driven by young people just like you.</p>
+    </div>
+  </div>
+
+  <div class="protests-container">
+
+    <!-- Chapter 1: Anti-Racism -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 1 — Anti-Racism</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-uk">
+        <div>
+          <div class="protest-icon">✊</div>
+          <div class="protest-year">2020–Present</div>
+          <div class="protest-name">Black Lives Matter UK</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Racial Justice</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Social Equality</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">On 25 May 2020, George Floyd, a 46-year-old Black American man, died after a Minneapolis police officer knelt on his neck for nearly nine minutes. The video of his death spread worldwide and triggered the largest wave of anti-racism protests the UK had seen in decades.</p>
+        <p class="protest-desc">Just days later, two young students — Aima and Tash — organised the first major London demonstration via Instagram and Twitter, proposing that Londoners march to the American Embassy. In the weeks that followed, <strong>more than 260 towns and cities across the UK held protests</strong>, from Monmouth in south Wales to Shetland in Scotland. At their heart was a new generation of young Black Britons.</p>
+        <p class="protest-desc">The protests were rooted in specifically <em>British</em> grievances: racial discrimination in the criminal justice system, the high rate of deaths of racialised minorities in police custody, and the UK's own colonial history. In Bristol, protesters famously toppled the statue of slave trader Edward Colston and threw it into the harbour — sparking a national debate about how Britain remembers its past.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Protests in 260+ UK towns and cities in June–July 2020</li>
+            <li>John Boyega addressed a Hyde Park crowd of thousands on 3 June</li>
+            <li>Statue of Edward Colston toppled in Bristol on 7 June 2020</li>
+            <li>Research by King's College London (2021) found racial inequality now seen as one of the most serious forms of inequality in Britain</li>
+            <li>UK Parliament introduced new laws restricting protest rights in 2021, triggering further "Kill the Bill" marches</li>
+          </ul>
+        </div>
+
+        <div class="note-box"><strong>Historical context:</strong> The UK had its own racial justice struggles long before 2020. The murder of Stephen Lawrence in 1993 and the Macpherson Report (1999) which found Metropolitan Police institutionally racist were key earlier turning points.</div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=YG8GjlLbbvs" target="_blank">▶ BLM UK Protests 2020 (Documentary)</a>
+            <a class="resource-link link-article" href="https://commonslibrary.parliament.uk/black-lives-matter-protests-uk-reaction/" target="_blank">📄 UK Parliament Library Report</a>
+            <a class="resource-link link-source" href="https://irr.org.uk/article/responses-across-the-uk-and-europe-to-the-death-of-george-floyd/" target="_blank">🔗 Institute of Race Relations</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 2: Climate -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 2 — Climate Action</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-green">
+        <div>
+          <div class="protest-icon">🌍</div>
+          <div class="protest-year">2018–Present</div>
+          <div class="protest-name">Fridays for Future</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Climate</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Youth-Led</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">In August 2018, Swedish teenager Greta Thunberg began skipping school every Friday to sit outside the Swedish parliament with a sign reading "Skolstrejk för klimatet" (School strike for climate). Within months, her individual act had inspired a global movement.</p>
+        <p class="protest-desc">In the UK, students across the country joined <strong>Fridays for Future</strong> school strikes, walking out of classrooms to demand urgent climate action. On 20 September 2019 — part of a global climate strike week — over <strong>4 million people struck in 161 countries</strong>, with major UK cities including London, Edinburgh, Cardiff, and Manchester seeing tens of thousands in the streets. Young schoolchildren stood alongside university students and adults.</p>
+        <p class="protest-desc">The demands included: keeping global warming below 1.5°C, an immediate halt to new fossil fuel exploration, and a just transition to renewable energy. The movement gave young people a sense that their voices could matter in political debates typically dominated by adults.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Started by 15-year-old Greta Thunberg in Sweden, August 2018</li>
+            <li>4M+ global strikers on 20 September 2019</li>
+            <li>UK students walked out in hundreds of schools nationwide</li>
+            <li>Greta Thunberg addressed the UN Climate Action Summit in September 2019</li>
+            <li>Movement directly influenced the UK Government's 2019 declaration of a "climate emergency"</li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=TMrtLsQbaok" target="_blank">▶ Greta Thunberg UN Speech</a>
+            <a class="resource-link link-article" href="https://fridaysforfuture.org" target="_blank">📄 Fridays for Future Official Site</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-green">
+        <div>
+          <div class="protest-icon">🛢️</div>
+          <div class="protest-year">2018–Present</div>
+          <div class="protest-name">Just Stop Oil</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Climate</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Civil Disobedience</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc"><strong>Just Stop Oil (JSO)</strong> emerged in 2022 as one of the most controversial environmental groups in UK history. Unlike traditional protest groups, JSO adopted tactics of <em>civil disobedience</em> — deliberately breaking the law to draw attention to the climate crisis.</p>
+        <p class="protest-desc">Their actions included: slow-walking on motorways (causing massive traffic jams), throwing soup at Van Gogh's "Sunflowers" at the National Gallery (behind protective glass), and stopping play at cricket matches at Lord's Cricket Ground. These tactics were deliberately provocative — designed to generate media coverage and force a public conversation about fossil fuel extraction.</p>
+        <p class="protest-desc">JSO demanded that the UK government stop issuing new licences for North Sea oil and gas extraction. Many of their supporters and activists were young people in their teens and twenties who felt that conventional political channels had failed to address the climate emergency adequately.</p>
+
+        <div class="note-box"><strong>Debate:</strong> Just Stop Oil's tactics are highly controversial. Supporters argue that extreme situations require extreme responses. Critics — including some climate scientists — argue the tactics alienate the public and are counterproductive. This makes JSO a fascinating case study for discussing <em>protest tactics</em> and effectiveness.</div>
+
+        <div class="protest-fact-box">
+          <h4>Key Actions</h4>
+          <ul>
+            <li>Threw orange powder paint at Stonehenge (June 2024)</li>
+            <li>Spray-painted the King Charles III portrait at the National Portrait Gallery (2023)</li>
+            <li>Blocked London's M25 motorway multiple times (2022)</li>
+            <li>Disrupted the World Snooker Championship (2023)</li>
+            <li>Dozens of activists received prison sentences for repeat offences</li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-article" href="https://juststopoil.org" target="_blank">📄 Just Stop Oil Website</a>
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=H5-1vb86cFo" target="_blank">▶ Just Stop Oil Explained</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-green">
+        <div>
+          <div class="protest-icon">🌿</div>
+          <div class="protest-year">2018–Present</div>
+          <div class="protest-name">Extinction Rebellion</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Climate</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Large-Scale</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc"><strong>Extinction Rebellion (XR)</strong> was founded in the UK in 2018 and quickly grew into a major international climate movement. Its core demand was for governments to "tell the truth" about climate change, reach net zero emissions by 2025, and create a Citizens' Assembly to oversee climate policy.</p>
+        <p class="protest-desc">XR's most significant actions took place in April 2019, when thousands of activists occupied five central London locations for two weeks — including Oxford Circus, Waterloo Bridge, and Parliament Square. Roads were blocked, a pink boat was parked in the middle of Oxford Circus, and over <strong>1,130 people were arrested</strong> — the largest mass arrest in UK history. The occupation made international headlines and brought climate change to the top of the political agenda.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Founded in the UK in October 2018</li>
+            <li>1,130+ arrests during the April 2019 London occupation</li>
+            <li>Waterloo Bridge covered with trees and plants for two weeks</li>
+            <li>XR protests directly contributed to Parliament declaring a climate emergency in May 2019</li>
+            <li>Now operates in 75+ countries</li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-article" href="https://extinctionrebellion.uk" target="_blank">📄 XR Official Site</a>
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=HDhNORiTtOU" target="_blank">▶ Extinction Rebellion Protests Explained</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 3: Women's Safety -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 3 — Women's Safety</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-purple">
+        <div>
+          <div class="protest-icon">🕯️</div>
+          <div class="protest-year">2021</div>
+          <div class="protest-name">Sarah Everard Protests</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Women's Rights</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Public Safety</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">On 3 March 2021, <strong>Sarah Everard</strong>, a 33-year-old marketing executive, disappeared while walking home in South London. She was later found murdered. The shocking discovery — and the fact that a Metropolitan Police officer was convicted of her murder — triggered a national outpouring of grief and anger.</p>
+        <p class="protest-desc">Thousands of women across the UK shared their own experiences of feeling unsafe on the streets. Vigils were organised in London's Clapham Common and across the country. When police moved in to break up the Clapham Common vigil — arresting women who had gathered to lay flowers — public outrage intensified dramatically. <strong>Reclaim These Streets</strong> and other organisations organised further demonstrations demanding action on violence against women.</p>
+        <p class="protest-desc">The movement sparked a major national conversation about women's safety, street harassment, and police conduct. It led to renewed calls for police reform and stronger laws against violence against women and girls (VAWG). A new law — the Domestic Abuse Act 2021 — had already been passed, but campaigners argued much more was needed.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Sarah Everard went missing 3 March 2021; body found 10 March</li>
+            <li>Metropolitan Police officer Wayne Couzens convicted of murder and kidnapping</li>
+            <li>Police arrested women at Clapham Common vigil, causing public fury</li>
+            <li>Over 97% of women aged 18–24 reported having experienced sexual harassment (UN Women UK survey, 2021)</li>
+            <li>Led to "Violence Against Women and Girls" government strategy (2021)</li>
+          </ul>
+        </div>
+
+        <div class="highlight-box">
+          <h3>Why This Matters for Young People</h3>
+          <p>The Sarah Everard protests resonated especially with young women who had their own experiences of feeling unsafe in public spaces. Many had taken detours, crossed the road, or texted friends for "safety check-ins" after dark — something many women consider normal but which reflects a deeper inequality in public safety.</p>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=VUvFXVEoBiY" target="_blank">▶ Sarah Everard Vigil &amp; Protests</a>
+            <a class="resource-link link-article" href="https://www.bbc.com/news/uk-56333396" target="_blank">📄 BBC: Sarah Everard — What Happened</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 4: Palestine -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 4 — Israel-Palestine Conflict</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-uk">
+        <div>
+          <div class="protest-icon">🕊️</div>
+          <div class="protest-year">2023–Present</div>
+          <div class="protest-name">Pro-Palestine & Pro-Israel Demonstrations</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">International Conflict</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">Following the Hamas attack on Israel on 7 October 2023 — in which approximately 1,200 people were killed and 251 taken hostage — and Israel's subsequent military campaign in Gaza, the UK saw its largest pro-Palestine protests in decades. On 11 November 2023, an estimated <strong>300,000 people</strong> marched through London.</p>
+        <p class="protest-desc">University students were particularly active in these protests. Student encampments formed at universities including University College London, the University of Manchester, and the University of Edinburgh, calling on universities to disclose and cut ties with Israeli institutions. There were also smaller, but significant, pro-Israel demonstrations, particularly after the October 7 attack.</p>
+        <p class="protest-desc">The protests raised complex questions about free speech, antisemitism, Islamophobia, and what universities' responsibilities are when it comes to international conflicts. These were among the most politically divisive demonstrations in recent UK history.</p>
+
+        <div class="note-box"><strong>Educational note:</strong> The Israel-Palestine conflict is deeply complex with histories stretching back decades and multiple perspectives. This website does not advocate for either side. If you want to learn more, we recommend reading multiple sources from different viewpoints.</div>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Hamas attack on Israel: 7 October 2023 (~1,200 killed)</li>
+            <li>Estimated 300,000 marched in London on 11 November 2023</li>
+            <li>University encampments at 20+ UK campuses in 2024</li>
+            <li>Debates about free speech vs. harassment on campuses</li>
+            <li>Both pro-Palestine AND pro-Israel groups organised public demonstrations</li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=Ru3CS-VkZbQ" target="_blank">▶ Pro-Palestine Protests in the UK</a>
+            <a class="resource-link link-article" href="https://www.bbc.com/news/articles/cp38z9lylddo" target="_blank">📄 BBC: Gaza Protests Coverage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 5: Brexit -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 5 — Brexit</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-gold">
+        <div>
+          <div class="protest-icon">🇪🇺</div>
+          <div class="protest-year">2016–2019</div>
+          <div class="protest-name">Brexit Protests</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Politics</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Democracy</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">When the UK voted to leave the European Union in June 2016 by 52% to 48%, the result shocked many — especially younger voters. Surveys showed that approximately <strong>75% of voters aged 18–24</strong> had voted Remain, yet because many young people had not registered to vote, they had less influence over the final result. This led to enormous frustration in younger demographics.</p>
+        <p class="protest-desc">The years between 2016 and 2019 saw <strong>both pro- and anti-Brexit demonstrations</strong>. The "People's Vote March" of October 2019 brought an estimated one million people to central London, demanding a second referendum — one of the largest political marches in UK history. Young people were highly visible, many arguing that their futures had been decided without adequate representation of their generation's wishes.</p>
+        <p class="protest-desc">Pro-Brexit protests also took place, particularly from the "March to Leave" movement in 2019. Brexit became one of the most divisive political events in modern British history and demonstrated how a democratic vote can itself become the subject of protest.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Brexit referendum result: 52% Leave, 48% Remain (June 2016)</li>
+            <li>~75% of voters aged 18–24 voted Remain</li>
+            <li>People's Vote March: ~1 million in London (October 2019)</li>
+            <li>UK formally left the EU on 31 January 2020</li>
+            <li>Brexit protests tested how democracies handle disagreement after votes</li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=YJxPok5c7G0" target="_blank">▶ Brexit Explained</a>
+            <a class="resource-link link-article" href="https://www.bbc.com/news/uk-politics-49899839" target="_blank">📄 BBC: People's Vote March 2019</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end protests-container -->
+
+  <footer>
+    <p><strong>Voice of a Generation — UK Section</strong><br>
+    Sources: BBC News, UK Parliament Library, Institute of Race Relations, The Guardian, openDemocracy, Sheila McKechnie Foundation.<br>For educational use only.</p>
+  </footer>
+  <div class="site-attribution">
+    <p>Created by <strong>Barbara Anna Zielonka</strong> — Nannestad High School</p>
+  </div>
+</div><!-- end uk page -->
+
+
+<!-- ═══════════════════ USA PAGE ═══════════════════ -->
+<div id="page-usa" class="page">
+
+  <div class="page-hero page-hero-usa">
+    <div class="page-hero-inner">
+      <p class="breadcrumb" onclick="showPage('home')">Home</p>
+      <h1>🇺🇸 Protests in the <em>United States</em></h1>
+      <p>The United States has a long tradition of protest and civil disobedience. This section covers the most important modern youth-led and youth-supported movements — from student gun-control marches to immigrant rights campaigns.</p>
+    </div>
+  </div>
+
+  <div class="protests-container">
+
+    <!-- Chapter 1: Gun Violence -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 1 — Gun Violence</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-usa">
+        <div>
+          <div class="protest-icon">🕊️</div>
+          <div class="protest-year">2018–Present</div>
+          <div class="protest-name">March for Our Lives</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Gun Control</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Youth-Led</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">On 14 February 2018 — Valentine's Day — a gunman killed <strong>17 students and teachers</strong> at Marjory Stoneman Douglas High School in Parkland, Florida. It was one of the deadliest school shootings in American history. The survivors vowed they would not let their friends' deaths be forgotten.</p>
+        <p class="protest-desc">Within weeks, these students — including <strong>Emma González, David Hogg, Cameron Kasky</strong>, and others — had organised the <em>March for Our Lives</em>. On 24 March 2018, between <strong>1.2 and 2 million people</strong> participated in over 800 marches worldwide, with the main rally in Washington D.C. drawing an estimated 200,000–800,000 people. It was considered the largest youth-led protest in the United States since the Vietnam War era.</p>
+        <p class="protest-desc">At the Washington rally, Emma González delivered one of the most powerful speeches in recent political memory: she stood in complete silence for 6 minutes and 20 seconds — the exact duration of the Parkland shooting — before saying: "Since the time I came out here, it has been six minutes and 20 seconds. The shooter has ceased shooting and will soon abandon his rifle… Fight for your lives before it's someone else's job."</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Parkland shooting: 17 killed on 14 February 2018</li>
+            <li>Organised in just 6 weeks by teenage survivors</li>
+            <li>1.2–2 million participants across 800+ global marches (24 March 2018)</li>
+            <li>Largest youth-led US protest since Vietnam War era</li>
+            <li>Helped pass the Bipartisan Safer Communities Act (2022) — first federal gun safety law in 30 years</li>
+            <li>Youth voter turnout surged to a 25-year high in 2018 midterms after MFOL's "Road to Change" voter registration tour</li>
+          </ul>
+        </div>
+
+        <div class="quote-block">
+          <p class="quote-text">"Since the time I came out here, it has been six minutes and 20 seconds. The shooter has ceased shooting… Fight for your lives before it's someone else's job."</p>
+          <p class="quote-source">— Emma González, Parkland survivor, speaking at March for Our Lives, Washington D.C., 24 March 2018</p>
+        </div>
+
+        <div class="highlight-box">
+          <h3>What Did It Achieve?</h3>
+          <p>March for Our Lives helped drive the Bipartisan Safer Communities Act (2022) — the first significant federal gun safety legislation in 30 years. The movement also spurred passage of state-level laws in Florida, Michigan, California, and Illinois. Youth voter turnout hit its highest level in a quarter century at the 2018 midterms.</p>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=WOyWotruXR0" target="_blank">▶ Emma González's March for Our Lives Speech</a>
+            <a class="resource-link link-article" href="https://marchforourlives.com" target="_blank">📄 March for Our Lives — Official Site</a>
+            <a class="resource-link link-article" href="https://en.wikipedia.org/wiki/March_for_Our_Lives" target="_blank">📄 Wikipedia: March for Our Lives</a>
+            <a class="resource-link link-source" href="https://www.npr.org/sections/thetwo-way/2018/03/24/596679790/hundreds-of-thousands-march-for-gun-control-across-the-u-s" target="_blank">🔗 NPR: March for Our Lives Highlights</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 2: Racial Justice -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 2 — Racial Justice & Policing</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-usa">
+        <div>
+          <div class="protest-icon">✊</div>
+          <div class="protest-year">2013–Present</div>
+          <div class="protest-name">Black Lives Matter USA</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Racial Justice</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Police Reform</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">The <strong>Black Lives Matter</strong> movement was founded in 2013 following the acquittal of George Zimmerman in the shooting death of Trayvon Martin, a 17-year-old Black teenager. The hashtag #BlackLivesMatter was created by Alicia Garza, Patrisse Cullors, and Opal Tometi as an affirmation of Black people's humanity.</p>
+        <p class="protest-desc">The movement gained global momentum in 2020 following George Floyd's murder. The protests that followed — lasting from May through August 2020 — were described as the <strong>largest movement in American history</strong>. Estimates suggest between 15 and 26 million people participated in demonstrations across the United States. Young people — especially Black, Latino, and white allies in their teens and twenties — were highly visible at every level of the protests, from organising to marching to speaking out on social media.</p>
+        <p class="protest-desc">The movement's demands centred on: ending police brutality against Black Americans, reforming or defunding/restructuring police departments, and addressing systemic racism in housing, education, healthcare, and the criminal justice system.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>BLM founded 2013 after Trayvon Martin verdict</li>
+            <li>15–26 million US participants in 2020 protests (estimated)</li>
+            <li>2020 protests occurred in all 50 states and 60+ countries</li>
+            <li>Several cities passed police reform measures in 2020–2021</li>
+            <li>Youth-led chapters organised voter registration drives in 2020</li>
+          </ul>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=LQAWVKeNlU0" target="_blank">▶ Black Lives Matter: History & Impact</a>
+            <a class="resource-link link-article" href="https://blacklivesmatter.com/about/" target="_blank">📄 BLM: About the Movement</a>
+            <a class="resource-link link-source" href="https://en.wikipedia.org/wiki/Black_Lives_Matter" target="_blank">🔗 Wikipedia: Black Lives Matter</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 3: Immigration -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 3 — Immigration & Immigrant Rights</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-uk">
+        <div>
+          <div class="protest-icon">🗽</div>
+          <div class="protest-year">2017–Present</div>
+          <div class="protest-name">DACA & Immigrant Rights</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Immigration</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Student Activism</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc"><strong>DACA</strong> — Deferred Action for Childhood Arrivals — is a US government programme that protects young people who were brought to the United States as children (often called "Dreamers") from deportation and allows them to work legally. It was created by President Obama in 2012 and protects approximately <strong>700,000 young people</strong>.</p>
+        <p class="protest-desc">When President Trump announced in 2017 that he would end DACA, student activists across the country organised <strong>sit-ins, marches, and campus rallies</strong>. Many student protesters were themselves DACA recipients — young people who had grown up in the US, attended American schools, and considered the US their home. Their personal stakes made the activism particularly powerful and emotionally compelling.</p>
+        <p class="protest-desc">Digital campaigns — using hashtags like #HereToStay, #DefendDACA, and #DreamActNow — amplified student voices far beyond their campuses. Hundreds of universities declared themselves "sanctuary campuses," pledging not to assist federal immigration authorities. University presidents wrote open letters to Congress. The activism succeeded in keeping DACA alive: courts repeatedly blocked its termination.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>DACA created by President Obama in June 2012</li>
+            <li>Approximately 700,000 "Dreamers" protected by DACA</li>
+            <li>Trump announced DACA termination in September 2017; courts repeatedly blocked it</li>
+            <li>Students held sit-ins at congressional offices across the country</li>
+            <li>Over 500 universities signed statements supporting DACA recipients</li>
+            <li>Supreme Court blocked DACA termination in June 2020 (DACA remains in legal dispute)</li>
+          </ul>
+        </div>
+
+        <div class="highlight-box">
+          <h3>Why Immigration Protests Are Especially Personal</h3>
+          <p>Unlike many protest causes, DACA activism often involved protesters fighting for their own rights and futures. Many student Dreamers were publicly "coming out" as undocumented — an act that carried real personal risk — to humanise the debate. This showed how personal experience can be one of the most powerful tools in activism.</p>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=UzYDqQDNFzc" target="_blank">▶ DACA Explained: Dreamers</a>
+            <a class="resource-link link-article" href="https://www.uscis.gov/DACA" target="_blank">📄 Official DACA Information (USCIS)</a>
+            <a class="resource-link link-article" href="https://unitedwedream.org" target="_blank">📄 United We Dream Organisation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 4: No Kings -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 4 — "No Kings": Anti-Authoritarianism Protests</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar" style="background:linear-gradient(160deg,#1a0800,#3d1200);color:white">
+        <div>
+          <div class="protest-icon">👑</div>
+          <div class="protest-year" style="color:rgba(255,255,255,0.6)">2025–Present</div>
+          <div class="protest-name" style="color:white">"No Kings" Protests</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.12);color:white">Democracy</span>
+          <span class="tag" style="background:rgba(255,255,255,0.12);color:white">Anti-Authoritarianism</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">The "No Kings" protests emerged in the United States in 2025 as a broad, largely decentralised movement opposed to what many participants described as the concentration of executive power and the erosion of democratic norms under President Donald Trump's second term. The slogan "No Kings" drew a direct line between the American Revolution — in which colonists rejected the rule of the British monarchy — and what protesters saw as modern authoritarian tendencies.</p>
+        <p class="protest-desc">The protests drew together a wide coalition: civil rights groups, LGBTQ+ organisations, labour unions, environmentalists, pro-democracy advocates, and many ordinary citizens with no prior history of political activism. This breadth was notable — it was not a single-issue movement but a response to a cluster of concerns about institutional independence, press freedom, the rule of law, and the role of unelected billionaires in government.</p>
+        <p class="protest-desc">Demonstrations took place in Washington D.C. and hundreds of cities across the country, with signs reading "No Kings," "Protect Democracy," and "This Is What Tyranny Looks Like." The movement was largely peaceful and represented one of the most significant moments of mass mobilisation in the United States in recent years.</p>
+
+        <div class="protest-fact-box">
+          <h4>What Triggered the Movement?</h4>
+          <ul>
+            <li>Concerns about executive overreach and bypassing of Congress</li>
+            <li>The role of tech billionaires in government (e.g. DOGE — Department of Government Efficiency)</li>
+            <li>Attacks on press freedom and independent institutions</li>
+            <li>Rollback of diversity, equity and inclusion (DEI) programmes</li>
+            <li>Immigration crackdowns and deportation policies</li>
+            <li>Withdrawal from international climate agreements</li>
+            <li>Broader anxieties about democratic backsliding in Western countries</li>
+          </ul>
+        </div>
+
+        <div class="quote-block" style="background:linear-gradient(135deg,#1a0800,#3d1a00)">
+          <p class="quote-text">"We fought a revolution so we would never have a king. The idea of 'No Kings' goes to the very heart of what America is supposed to be."</p>
+          <p class="quote-source">— Common sentiment among "No Kings" protesters, 2025</p>
+        </div>
+
+        <div class="highlight-box" style="background:linear-gradient(135deg,#3d1200,#7a2500)">
+          <h3>Why the Slogan "No Kings"?</h3>
+          <p>The phrase is a direct reference to America's founding. When the Constitution was written, the Founders deliberately rejected the idea of a king or hereditary ruler. Protesters used "No Kings" to argue that concentrating power in one person — or a small group of unelected individuals — betrays the principles on which the United States was built.</p>
+        </div>
+
+        <div class="note-box">
+          <strong>Educational note:</strong> The "No Kings" protests reflect a broader democratic debate rather than a single policy disagreement. Consider: What makes a democracy "healthy"? What institutions protect democratic rights? How should citizens respond when they believe those institutions are threatened?
+        </div>
+
+        <div class="why-grid" style="margin-top:1.5rem">
+          <div class="why-card" style="border-left:4px solid #f97316">
+            <div class="why-icon">📜</div>
+            <div class="why-title">Democracy &amp; Checks and Balances</div>
+            <div class="why-text">Modern democracies are built on the idea that no single person holds unchecked power. Parliaments, courts, a free press, and independent institutions all act as "checks and balances." The "No Kings" movement argued these were under threat.</div>
+          </div>
+          <div class="why-card" style="border-left:4px solid #f97316">
+            <div class="why-icon">🏛️</div>
+            <div class="why-title">Institutional Independence</div>
+            <div class="why-text">One key concern was whether universities, the judiciary, the civil service, and public broadcasters were being pressured to comply with a political agenda. Protesters argued that independent institutions are essential safeguards of democracy.</div>
+          </div>
+          <div class="why-card" style="border-left:4px solid #f97316">
+            <div class="why-icon">👩‍🎓</div>
+            <div class="why-title">Youth &amp; Campus Involvement</div>
+            <div class="why-text">University students were prominently involved, particularly protesting government pressure on universities and threats to academic freedom — continuing a long US tradition of campus-based political activism.</div>
+          </div>
+        </div>
+
+        <div class="resource-section" style="margin-top:1.5rem">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-article" href="https://www.theguardian.com/us-news/trump-administration" target="_blank">📄 The Guardian: Trump Administration Coverage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end protests-container -->
+
+  <footer>
+    <p><strong>Voice of a Generation — USA Section</strong><br>
+    Sources: NPR, CBS News, NBC News, Rutgers CYPP, Participedia, March for Our Lives, USCIS, United We Dream.<br>For educational use only.</p>
+  </footer>
+  <div class="site-attribution">
+    <p>Created by <strong>Barbara Anna Zielonka</strong> — Nannestad High School</p>
+  </div>
+</div><!-- end usa page -->
+<div id="page-aus" class="page">
+
+  <div class="page-hero" style="background:linear-gradient(135deg,#e8f5ed 0%,#c8ecda 100%)">
+    <div class="page-hero-inner">
+      <p class="breadcrumb" onclick="showPage('home')">Home</p>
+      <h1 style="color:var(--green)">🇦🇺 Protests in <em style="color:var(--green-light)">Australia</em></h1>
+      <p>Australia has one of the most active youth protest cultures in the Asia-Pacific. From school climate strikes in every major city to pro-Palestine campus encampments and campaigns for Indigenous justice — young Australians have shown that protest is a powerful democratic tool.</p>
+    </div>
+  </div>
+
+  <div class="protests-container">
+
+    <!-- Chapter 1: Climate -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 1 — Climate Justice</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-green">
+        <div>
+          <div class="protest-icon">🌏</div>
+          <div class="protest-year">2018–Present</div>
+          <div class="protest-name">School Strike 4 Climate (SS4C)</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Climate Justice</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Youth-Led</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc"><strong>School Strike 4 Climate (SS4C)</strong> — also known as the Climate Strike or Youth Climate Strike — is the most visible and sustained youth protest movement in Australian history. Inspired by Greta Thunberg's Fridays for Future movement in Sweden, Australian students walked out of classrooms from 2018 onwards to demand that governments take urgent action on climate change.</p>
+        <p class="protest-desc">The movement rapidly spread to <strong>all major Australian cities</strong> — Sydney, Melbourne, Brisbane, Perth, Adelaide, and Canberra — as well as regional towns. On 20 September 2019, as part of the global climate strike week, an estimated <strong>300,000 Australians</strong> marched — one of the largest mass demonstrations in Australian history. Students carried signs reading "There Is No Planet B," "Our House Is on Fire," and "Climate Justice Now."</p>
+        <p class="protest-desc">Australia was a particularly significant location for these protests. As one of the world's largest exporters of coal and liquefied natural gas, the country has faced intense international criticism for its climate policies. The Black Summer bushfires of 2019–2020 — which burned an area larger than the United Kingdom — gave the climate movement a devastating, immediate urgency. Many young protesters had personally experienced the smoke-filled skies and evacuations.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>~300,000 Australians marched on 20 September 2019 — one of the country's largest ever demonstrations</li>
+            <li>Strikes held in 110+ Australian locations on the same day</li>
+            <li>Key demands: no new coal or gas mines, 100% renewable energy, a just transition for workers</li>
+            <li>Youth climate groups include: Australian Youth Climate Coalition (AYCC) and Seed Indigenous Youth Climate Network</li>
+            <li>The 2019–20 Black Summer bushfires — killing an estimated 3 billion animals — intensified public support for climate action</li>
+            <li>SS4C continued campaigning through elections, pressuring both Labor and Liberal parties</li>
+          </ul>
+        </div>
+
+        <div class="highlight-box" style="background:linear-gradient(135deg,#0f4025,#1a6b3c)">
+          <h3>Seed Indigenous Youth Climate Network</h3>
+          <p>Seed is Australia's first Indigenous youth climate network, founded in 2014. It links climate justice to the rights and survival of Aboriginal and Torres Strait Islander communities, who are among the most directly affected by climate impacts in Australia. Seed's activists bring an intersectional approach — connecting environmental, racial, and cultural justice — that has enriched the broader SS4C movement.</p>
+        </div>
+
+        <div class="note-box"><strong>Key term:</strong> "Climate justice" goes beyond simply reducing emissions. It argues that the communities least responsible for climate change — often Indigenous peoples, the poor, and people in the Global South — suffer its worst effects. Climate justice protesters argue that any solution must address these inequalities, not just focus on technology or economics.</div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-article" href="https://www.schoolstrike4climate.com" target="_blank">📄 School Strike 4 Climate — Official Site</a>
+            <a class="resource-link link-article" href="https://aycc.org.au" target="_blank">📄 Australian Youth Climate Coalition</a>
+            <a class="resource-link link-article" href="https://www.seedmob.org.au" target="_blank">📄 Seed Indigenous Youth Climate Network</a>
+            <a class="resource-link link-video" href="https://www.youtube.com/watch?v=TMrtLsQbaok" target="_blank">▶ Greta Thunberg's UN Speech (inspired SS4C)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 2: Palestine -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 2 — Pro-Palestinian Student Protests</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-uk">
+        <div>
+          <div class="protest-icon">🕊️</div>
+          <div class="protest-year">2023–Present</div>
+          <div class="protest-name">Pro-Palestine Campus Encampments &amp; Rallies</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Solidarity</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Campus Activism</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">Following the Hamas attack on Israel on 7 October 2023 and Israel's subsequent military campaign in Gaza, Australian university students joined a wave of global campus protests inspired by — and in direct solidarity with — similar encampments at US universities such as Columbia, Harvard, and UCLA.</p>
+        <p class="protest-desc">Pro-Palestinian encampments and rallies were established at some of Australia's most prominent universities, including the <strong>University of Sydney, University of Melbourne, University of Adelaide</strong>, Australian National University (ANU), and others. Students set up tents, held teach-ins, listened to speakers, and displayed Palestinian flags and banners reading "Free Palestine" and "End the Occupation."</p>
+        <p class="protest-desc">The central demands were: that universities <strong>disclose and cut financial ties</strong> with companies and institutions linked to Israel's military operations in Gaza; an academic boycott; and the recognition of what protesters described as genocide under international law. University administrations responded in varied ways — some opening negotiations with students, others calling in police.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Encampments at University of Sydney, University of Melbourne, ANU, and others (2024)</li>
+            <li>Protesters called for divestment from companies with links to Israeli military operations</li>
+            <li>Inspired directly by the global wave of campus encampments in the US and UK</li>
+            <li>Large street rallies also took place in Sydney, Melbourne, and Brisbane, drawing tens of thousands</li>
+            <li>Raised major debates about academic freedom, free speech, and antisemitism on Australian campuses</li>
+            <li>Some universities negotiated with encampment organisers; others sought court injunctions to remove protesters</li>
+          </ul>
+        </div>
+
+        <div class="note-box"><strong>Educational note:</strong> As with the UK and US sections, this site does not take a political position on the Israel-Palestine conflict. Students are encouraged to consult multiple credible sources, listen to different perspectives, and engage with the complexity of this issue. The focus here is on understanding the protest movement itself — who organised it, what they demanded, and how institutions responded.</div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-article" href="https://www.abc.net.au/news/2024-05-08/university-pro-palestine-encampments/103823282" target="_blank">📄 ABC News: Australian Campus Encampments</a>
+            <a class="resource-link link-article" href="https://www.theguardian.com/australia-news/protest" target="_blank">📄 The Guardian Australia: Protest Coverage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 3: Indigenous Rights -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 3 — Youth Detention &amp; Indigenous Rights</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar sidebar-purple">
+        <div>
+          <div class="protest-icon">🪃</div>
+          <div class="protest-year">2016–Present</div>
+          <div class="protest-name">Don Dale &amp; Indigenous Youth Justice Protests</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Indigenous Rights</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Youth Justice</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">In July 2016, the Australian Broadcasting Corporation's <em>Four Corners</em> programme broadcast shocking undercover footage from inside the <strong>Don Dale Youth Detention Centre</strong> in the Northern Territory. The footage showed guards hooding and restraining teenagers — mostly young Aboriginal boys — with spit hoods; gassing a cell full of youths with tear gas; and subjecting children to degrading, painful, and what many described as torturous treatment.</p>
+        <p class="protest-desc">The broadcast caused national outrage. Protests erupted across Australia, led by Indigenous rights groups, human rights advocates, and young allies demanding accountability. Prime Minister Malcolm Turnbull announced a Royal Commission into the Youth Detention System within 24 hours. The protests that followed were not a single march but a sustained campaign that linked the Don Dale scandal to broader systemic issues: the <strong>massive over-representation of Aboriginal children</strong> in the youth justice system, low ages of criminal responsibility, and the long history of institutional racism in Australia's treatment of Indigenous children.</p>
+        <p class="protest-desc">Campaigners have called for raising the age of criminal responsibility from 10 to 14 (in line with international standards), abolishing the use of spit hoods and isolation, investing in community-led alternatives to detention, and "closing the gap" between Indigenous and non-Indigenous outcomes in education, health, and justice. Young Aboriginal and Torres Strait Islander activists have been central to these campaigns.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Don Dale footage broadcast by ABC Four Corners: 25 July 2016</li>
+            <li>Royal Commission into the Protection and Detention of Children in the NT announced within 24 hours</li>
+            <li>Aboriginal and Torres Strait Islander children are 17× more likely to be in detention than non-Indigenous children</li>
+            <li>Australia's age of criminal responsibility was 10 — one of the lowest in the world; campaigners pushed for it to be raised to 14</li>
+            <li>Spit hoods were banned in the NT following protests and the Royal Commission</li>
+            <li>Campaigns continue: "Raise the Age" and "Justice Reinvestment" are ongoing youth-supported movements</li>
+          </ul>
+        </div>
+
+        <div class="quote-block" style="background:linear-gradient(135deg,#1f0d2e,#3d1a5c)">
+          <p class="quote-text">Australia incarcerates Indigenous children at rates that should shame every Australian. The protests after Don Dale were not just about one detention centre — they were about a system that has never treated Aboriginal children as fully human.</p>
+          <p class="quote-source">— Common theme in Indigenous rights advocacy following the Don Dale revelations</p>
+        </div>
+
+        <div class="highlight-box" style="background:linear-gradient(135deg,#3a1a5c,#5b2d8e)">
+          <h3>What Is "Closing the Gap"?</h3>
+          <p>"Closing the Gap" is the Australian government's framework for reducing the profound inequalities between Indigenous and non-Indigenous Australians in areas including life expectancy, education, employment, and child mortality. Youth protesters have argued that incarcerating Aboriginal children at vastly disproportionate rates actively widens — rather than closes — this gap.</p>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Learn More</h4>
+          <div class="resource-links">
+            <a class="resource-link link-article" href="https://www.abc.net.au/news/2016-07-25/four-corners-evidence-of-kids-tear-gas-in-don-dale-prison/7656128" target="_blank">📄 ABC Four Corners: Don Dale Report</a>
+            <a class="resource-link link-article" href="https://www.raisetheage.org.au" target="_blank">📄 Raise the Age Campaign</a>
+            <a class="resource-link link-article" href="https://humanrights.gov.au/our-work/aboriginal-and-torres-strait-islander-social-justice" target="_blank">📄 Australian Human Rights Commission</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 4: Other Protests -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 4 — Other Youth Protest Issues</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card" style="border-left:4px solid var(--purple)">
+        <div class="why-icon">🏳️‍🌈</div>
+        <div class="why-title">LGBTQ+ Rights &amp; the Marriage Equality Debate</div>
+        <div class="why-text">In 2017, Australia held a national postal survey on same-sex marriage. Young Australians — who overwhelmingly supported marriage equality — staged rallies, organised door-knocking campaigns, and flooded social media with the "Yes" campaign message. When the "Yes" vote won (61.6%), celebrations broke out in cities across the country. Many young activists say this was their first experience of seeing their collective voice lead to real change.</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid var(--blue)">
+        <div class="why-icon">⛵</div>
+        <div class="why-title">Refugee and Asylum Seeker Rights</div>
+        <div class="why-text">Australia's offshore detention policies — holding asylum seekers on Manus Island (Papua New Guinea) and Nauru — have drawn sustained protest from students and young people. Rallies under banners like "Bring Them Here" and "Refugees Are Welcome" have been held in Australian cities since the early 2010s, with young people prominent among demonstrators and social media campaigners.</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid var(--red)">
+        <div class="why-icon">✊</div>
+        <div class="why-title">Anti-Racism &amp; Black Lives Matter in Australia</div>
+        <div class="why-text">In 2020, following the global wave of BLM protests, thousands of Australians marched in solidarity with Black Americans — but also to highlight the deaths of Aboriginal and Torres Strait Islander people in Australian police custody. The "Black Lives Matter" movement in Australia was therefore simultaneously an act of international solidarity and a demand for domestic justice.</div>
+      </div>
+    </div>
+
+  </div><!-- end protests-container -->
+
+  <footer>
+    <p><strong>Voice of a Generation — Australia Section</strong><br>
+    Sources: ABC News Australia, The Guardian Australia, School Strike 4 Climate, AYCC, Seed Mob, Raise the Age campaign, Australian Human Rights Commission.<br>For educational use only.</p>
+  </footer>
+  <div class="site-attribution">
+    <p>Created by <strong>Barbara Anna Zielonka</strong> — Nannestad High School</p>
+  </div>
+</div><!-- end aus page -->
+
+
+<!-- ═══════════════════ SOUTH AFRICA PAGE ═══════════════════ -->
+<div id="page-sa" class="page">
+
+  <div class="page-hero" style="background:linear-gradient(135deg,#e8f5ee 0%,#c6e8d4 100%)">
+    <div class="page-hero-inner">
+      <p class="breadcrumb" onclick="showPage('home')">Home</p>
+      <h1 style="color:#145a32">🇿🇦 Protests in <em style="color:#1a7a3c">South Africa</em></h1>
+      <p>South Africa is a country of deep inequality, high unemployment, and complex identity politics. Its protest landscape reflects these tensions — from anti-immigration marches linked to xenophobia, to trade union demonstrations over the cost of living. Understanding these protests means grappling with some of the hardest questions in post-apartheid society.</p>
+    </div>
+  </div>
+
+  <div class="protests-container">
+
+    <!-- Chapter 1: Anti-Immigration -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 1 — Anti-Immigration Protests (2026)</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar" style="background:linear-gradient(160deg,#145a32,#1a7a3c);color:white">
+        <div>
+          <div class="protest-icon">🚶</div>
+          <div class="protest-year" style="color:rgba(255,255,255,0.65)">April 2026</div>
+          <div class="protest-name" style="color:white">Anti-Immigration Marches — Johannesburg &amp; Pretoria</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Immigration</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Xenophobia</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">2026</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">In late April 2026, large crowds marched through the streets of <strong>Johannesburg and Pretoria</strong> to protest what organisers called "illegal immigration," demanding stricter enforcement of immigration laws and mass deportations of undocumented migrants. These marches were primarily organised by groups including <strong>March and March</strong>, as well as movements like Operation Dudula and ActionSA, which have built significant followings by blaming migrants — largely from Zimbabwe, Mozambique, Ethiopia, and Nigeria — for unemployment and crime.</p>
+        <p class="protest-desc">The demonstrations drew international attention not only for their scale but for the fears they generated. Governments across Africa — including Nigeria, Zimbabwe, and Mozambique — issued advisories warning their citizens living in South Africa to exercise extreme caution, close their businesses, and in some cases stay indoors during the marches. This response reflected bitter historical memory: South Africa has experienced <strong>repeated waves of xenophobic violence</strong>, in which foreign nationals have been attacked, killed, and had their shops looted.</p>
+        <p class="protest-desc">The <strong>United Nations warned</strong> South Africa about the risk of the marches triggering attacks on migrants and foreign nationals, calling on authorities to protect vulnerable communities. Several African embassies formally protested to the South African government. Media reports documented foreign-owned shops closing and foreign nationals fleeing their homes ahead of the marches.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>Marches in Johannesburg and Pretoria, late April 2026</li>
+            <li>Organised by March and March, Operation Dudula, and ActionSA</li>
+            <li>Demanded stricter immigration enforcement and mass deportations</li>
+            <li>Multiple African governments warned their nationals to stay indoors or close businesses</li>
+            <li>The UN warned South Africa about the risk of xenophobic violence linked to the marches</li>
+            <li>Protests occurred amid a backdrop of ~32% unemployment in South Africa</li>
+          </ul>
+        </div>
+
+        <div class="note-box">
+          <strong>Context — Why Is This Happening?</strong> South Africa has one of the world's highest unemployment rates — around 32%, and even higher for young people. Many South Africans blame undocumented migrants for taking jobs, driving up crime, and straining public services. However, researchers and human rights organisations argue these claims are often exaggerated and that the real causes of unemployment are structural — legacy of apartheid, poor education, and weak economic growth — rather than immigration. This makes anti-immigration protest a deeply contested political and ethical issue.
+        </div>
+
+        <div class="quote-block" style="background:linear-gradient(135deg,#0a3320,#145a32)">
+          <p class="quote-text">South Africa's xenophobic marches are not just about immigration — they are about unemployment, inequality, and the failure of the post-apartheid promise to deliver a better life for all.</p>
+          <p class="quote-source">— Observers and human rights researchers on the 2026 marches</p>
+        </div>
+
+        <div class="resource-section">
+          <h4>📚 Credible Sources</h4>
+          <div class="resource-links">
+            <a class="resource-link link-article" href="https://www.africanews.com/2026/04/29/south-africa-crowds-protest-against-illegal-immigration/" target="_blank">📄 AfricaNews: Johannesburg &amp; Pretoria Marches</a>
+            <a class="resource-link link-article" href="https://www.bbc.com/news/articles/c7v9572ne0lo" target="_blank">📄 BBC News: Migrants Warned to Close Shops</a>
+            <a class="resource-link link-article" href="https://www.washingtonpost.com/world/2026/04/29/south-africa-illegal-immigration-march-protests/c4250f8a-43cd-11f1-b19d-32431046e4b3/" target="_blank">📄 Washington Post: Johannesburg Protest Details</a>
+            <a class="resource-link link-article" href="https://www.bbc.com/pidgin/articles/c9d31q0y0jjo" target="_blank">📄 BBC Pidgin: Pretoria March &amp; Attacks on Nigerians</a>
+            <a class="resource-link link-article" href="https://www.dailymaverick.co.za/article/2026-04-29-hate-on-parade-xenophobic-marches-gather-pace-as-un-warns-south-africa/" target="_blank">📄 Daily Maverick: UN Warning &amp; Xenophobic Violence</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 2: Xenophobic Violence -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 2 — Xenophobic Violence: A Recurring Crisis</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card" style="border-left:4px solid #c0392b">
+        <div class="why-icon">⚠️</div>
+        <div class="why-title">History of Xenophobic Violence</div>
+        <div class="why-text">South Africa has experienced major waves of xenophobic violence in 2008, 2015, and 2019, in which dozens of people were killed and thousands displaced. Shops owned by foreign nationals have been looted; migrants have been beaten and in some cases murdered. The 2026 marches took place against this backdrop, with many observers and foreign governments fearing history could repeat itself.</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid #c0392b">
+        <div class="why-icon">🏛️</div>
+        <div class="why-title">Government &amp; International Response</div>
+        <div class="why-text">The South African government faces a difficult balancing act: protecting the right to protest while preventing violence against migrants. The UN, African Union, and several national governments have called on Pretoria to do more to protect foreign nationals. South Africa is a signatory to international refugee and human rights conventions that protect migrants from violence and discrimination.</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid #c0392b">
+        <div class="why-icon">🔬</div>
+        <div class="why-title">What Researchers Say</div>
+        <div class="why-text">Academic researchers studying South African xenophobia argue it is driven by scapegoating — directing economic frustration at a visible minority rather than at the structural causes of poverty. Studies show that areas with the highest anti-migrant sentiment also tend to have the highest unemployment and lowest access to public services — suggesting economic desperation, not migrant numbers, drives hostility.</div>
+      </div>
+    </div>
+
+    <!-- Chapter 3: Cost of Living & Inequality -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 3 — Cost of Living &amp; Inequality Protests</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-block">
+      <div class="protest-sidebar" style="background:linear-gradient(160deg,#5c3d0a,#9a7010);color:white">
+        <div>
+          <div class="protest-icon">💸</div>
+          <div class="protest-year" style="color:rgba(255,255,255,0.65)">Ongoing</div>
+          <div class="protest-name" style="color:white">Trade Union &amp; Civil Society Protests Over Inequality</div>
+        </div>
+        <div class="tag-row" style="margin-top:1.5rem">
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Inequality</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Cost of Living</span>
+          <span class="tag" style="background:rgba(255,255,255,0.15);color:white">Youth</span>
+        </div>
+      </div>
+      <div class="protest-content">
+        <p class="protest-desc">Beyond anti-immigration protests, South Africa has seen a sustained wave of demonstrations over the <strong>rising cost of living, inflation, power cuts (known locally as "load shedding"), and deep structural inequality</strong>. Major trade unions — including COSATU (Congress of South African Trade Unions) and SAFTU (South African Federation of Trade Unions) — alongside civil society organisations, have organised marches and strikes calling on the government to address soaring food and fuel prices and chronic electricity shortages.</p>
+        <p class="protest-desc">South Africa is one of the <strong>most unequal countries in the world</strong> by the Gini coefficient — a standard measure of income inequality. The legacy of apartheid means wealth remains concentrated among a small minority, while millions live in deep poverty without reliable electricity, clean water, or adequate housing. Young South Africans — who face unemployment rates above 60% among those aged 15–24 — have been particularly vocal in linking economic hardship to the failures of post-apartheid governance.</p>
+        <p class="protest-desc">Demonstrators have argued that without urgent action on inequality, unemployment, and service delivery, the country's social fabric is at risk. These protests link economic grievances to a broader crisis of legitimacy facing the governing ANC (African National Congress), which has ruled since the end of apartheid in 1994 but has faced mounting accusations of corruption and mismanagement.</p>
+
+        <div class="protest-fact-box">
+          <h4>Key Facts</h4>
+          <ul>
+            <li>South Africa's Gini coefficient is among the highest in the world — a measure of extreme inequality</li>
+            <li>Youth unemployment (ages 15–24) exceeds 60%</li>
+            <li>"Load shedding" — rolling power cuts — has affected South Africa for over a decade, crippling businesses and households</li>
+            <li>COSATU and SAFTU have organised national strikes and marches over wages, prices, and electricity</li>
+            <li>Civil society groups link cost-of-living protests to demands for anti-corruption action and better governance</li>
+            <li>In 2024, the ANC lost its parliamentary majority for the first time since 1994 — partly driven by voter anger over inequality</li>
+          </ul>
+        </div>
+
+        <div class="highlight-box" style="background:linear-gradient(135deg,#5c3d0a,#9a7010)">
+          <h3>Why Does Inequality Matter for Young South Africans?</h3>
+          <p>South Africa's youth unemployment crisis is one of the worst in the world. More than half of young South Africans who want to work cannot find a job. Many live in townships or rural areas with poor schools, unreliable electricity, and limited transport. For this generation, protests over inequality and the cost of living are not abstract politics — they are a fight for a liveable future.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chapter 4: Key Concepts -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Chapter 4 — Key Concepts for Understanding South African Protests</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card" style="border-left:4px solid #1a7a3c">
+        <div class="why-icon">📖</div>
+        <div class="why-title">Xenophobia</div>
+        <div class="why-text">Fear or hatred of people from other countries. In South Africa, xenophobia is often directed at migrants from other African countries. It is important to distinguish between legitimate concerns about immigration policy and xenophobic violence, which is illegal and a human rights violation.</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid #1a7a3c">
+        <div class="why-icon">📖</div>
+        <div class="why-title">Scapegoating</div>
+        <div class="why-text">Blaming a group of people — often a vulnerable minority — for complex social or economic problems. Researchers argue that directing anger at migrants rather than at structural causes of poverty and unemployment is a form of political scapegoating that can lead to dangerous violence.</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid #1a7a3c">
+        <div class="why-icon">📖</div>
+        <div class="why-title">Post-Apartheid Legacy</div>
+        <div class="why-text">Apartheid — the system of racial segregation enforced in South Africa from 1948 to 1994 — created deep structural inequalities that persist today. Understanding South African protests requires understanding how the apartheid legacy shapes who owns land, who gets good education, and who lives in poverty.</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid #1a7a3c">
+        <div class="why-icon">📖</div>
+        <div class="why-title">Gini Coefficient</div>
+        <div class="why-text">A statistical measure of inequality within a society, ranging from 0 (perfect equality) to 1 (maximum inequality). South Africa's Gini coefficient is around 0.63 — one of the highest in the world — meaning its wealth is extraordinarily concentrated in the hands of a small minority.</div>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin:2rem 0 3rem">
+      <strong>💡 Educational note:</strong> South Africa's protests raise some of the most challenging questions in modern politics: How do democracies manage tensions between citizens and migrants? How do we distinguish between legitimate protest and violence? What obligations do governments have to protect minorities during demonstrations? These questions have no easy answers, but understanding them is essential for any student of politics or human rights.
+    </div>
+
+  </div><!-- end protests-container -->
+
+  <footer>
+    <p><strong>Voice of a Generation — South Africa Section</strong><br>
+    Sources: AfricaNews, BBC News, BBC Pidgin, The Washington Post, Daily Maverick, COSATU, South African Human Rights Commission.<br>For educational use only.</p>
+  </footer>
+  <div class="site-attribution">
+    <p>Created by <strong>Barbara Anna Zielonka</strong> — Nannestad High School</p>
+  </div>
+</div><!-- end sa page -->
+
+
+<div id="page-why" class="page">
+
+  <div class="page-hero page-hero-why">
+    <div class="page-hero-inner">
+      <p class="breadcrumb" onclick="showPage('home')">Home</p>
+      <h1>🧠 Why Do Young People <em>Protest?</em></h1>
+      <p>What motivates young people to take to the streets, skip school, or risk arrest? Researchers, psychologists, and young activists themselves have explored these questions — here's what we know.</p>
+    </div>
+  </div>
+
+  <div class="protests-container">
+
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Section 1 — The Big Reasons</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">😡</div>
+        <div class="why-title">Feeling Unheard by Adults</div>
+        <div class="why-text">Many young people feel that political systems were designed by and for adults. They cannot vote until they are 18, yet decisions made today — about climate policy, gun laws, immigration — will shape <em>their</em> futures most. Protest becomes a way of forcing adults to listen before an election ever happens.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌡️</div>
+        <div class="why-title">Urgency & Future Fear</div>
+        <div class="why-text">Issues like climate change feel especially urgent to young people because they will live with the consequences longest. Research shows that a sense of environmental or social threat — and anxiety about the future — is a powerful driver of protest participation, particularly in climate movements.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <div class="why-title">Belonging & Identity</div>
+        <div class="why-text">Adolescence is a time when people develop their sense of identity and look for communities to belong to. Protest movements offer a powerful sense of shared identity and purpose. Research published in academic journals found that "politicised social identity" — seeing protest as part of who you are — strongly predicts activism.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💔</div>
+        <div class="why-title">Personal Experience of Injustice</div>
+        <div class="why-text">Young people who have personally experienced racism, gun violence, immigration uncertainty, or sexual harassment are far more likely to protest those issues. The Parkland students, DACA Dreamers, and young Black Britons in BLM protests all drew on direct personal experience to fuel their activism.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📱</div>
+        <div class="why-title">Social Media & Instant Organising</div>
+        <div class="why-text">Digital platforms have dramatically lowered the barrier to organising. The BLM London protests in 2020 were organised by two students on Instagram and Twitter within days. Snapchat's location-sharing let activists track school walkouts. Protest has never been easier to join or to spread.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💡</div>
+        <div class="why-title">Belief That Change Is Possible</div>
+        <div class="why-text">Psychologists call this "group efficacy" — the belief that collective action can actually make a difference. Young people who believe protests have worked in the past are much more likely to join. Seeing movements like March for Our Lives achieve real legislation reinforces this belief for the next generation.</div>
+      </div>
+    </div>
+
+    <div class="quote-block">
+      <p class="quote-text">Youth activism often stems from a perception of marginalisation, with diverse political, environmental, economic and social issues triggering protests. There has been a significant increase in global protests in recent decades, with students and young people at the forefront.</p>
+      <p class="quote-source">— UNICEF Innocenti Research Report: "Youth, Protests and the Polycrisis" (2024)</p>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Section 2 — What Research Tells Us</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <p style="font-size:1rem; color:var(--gray); line-height:1.7; margin-bottom:2rem;">Researchers from universities, UNICEF, and psychology journals have studied why young people protest. Here are six key psychological and social factors they've identified.</p>
+
+    <div class="psych-grid">
+      <div class="psych-card">
+        <div class="psych-number">01</div>
+        <div class="psych-title">Perceived Marginalisation</div>
+        <div class="psych-text">UNICEF research (2024) found that young protesters often share a feeling of being excluded from political decision-making. When formal channels feel closed off, protest becomes the only option available.</div>
+      </div>
+      <div class="psych-card">
+        <div class="psych-number">02</div>
+        <div class="psych-title">Social Identity & Group Belonging</div>
+        <div class="psych-text">Studies show that having a strong "politicised social identity" — seeing activism as part of who you are, not just something you do — is one of the strongest predictors of protest participation among young people.</div>
+      </div>
+      <div class="psych-card">
+        <div class="psych-number">03</div>
+        <div class="psych-title">Collective Efficacy</div>
+        <div class="psych-text">Young people protest when they believe the group can make a difference. Historically successful movements — from civil rights to suffrage — show future generations that collective action works, inspiring new waves of activism.</div>
+      </div>
+      <div class="psych-card">
+        <div class="psych-number">04</div>
+        <div class="psych-title">Moral Emotions</div>
+        <div class="psych-text">Emotions like collective guilt ("our country has done wrong"), anger at injustice, and solidarity with those suffering drive protest behaviour. Research on Fridays for Future found that "environmental threat" perception strongly linked to protest intentions.</div>
+      </div>
+      <div class="psych-card">
+        <div class="psych-number">05</div>
+        <div class="psych-title">Peer Influence & Social Networks</div>
+        <div class="psych-text">People are far more likely to protest if their friends and social networks are doing so too. Social media has expanded these networks dramatically, allowing a protest to spread from one city to a national or global movement within hours.</div>
+      </div>
+      <div class="psych-card">
+        <div class="psych-number">06</div>
+        <div class="psych-title">Search for Meaning & Purpose</div>
+        <div class="psych-text">Research on youth activism programmes found that young people join not just for political goals but for "sanctuary" — spaces where their identity is affirmed, they feel supported, and they can take risks in a safe community environment.</div>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Section 3 — Historical Context</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <p style="font-size:1rem;color:var(--gray);line-height:1.7;margin-bottom:1.5rem;">Young people protesting is not new. Here are some historical moments that show youth activism is a permanent part of democratic society:</p>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">✊</div>
+        <div class="why-title">US Civil Rights Movement (1950s–60s)</div>
+        <div class="why-text">Young Black students organised lunch counter sit-ins (Greensboro, 1960) and Freedom Rides. The Student Non-violent Coordinating Committee (SNCC) was one of the most important civil rights organisations. Many activists were teenagers and university students.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">☮️</div>
+        <div class="why-title">Vietnam War Protests (1960s–70s)</div>
+        <div class="why-text">Student-led anti-war protests across US campuses, including the tragic Kent State shootings (1970) where National Guard soldiers killed four student protesters. These demonstrations changed public opinion and ultimately helped end US involvement in Vietnam.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🎓</div>
+        <div class="why-title">UK Student Tuition Fee Protests (2010)</div>
+        <div class="why-text">In 2010, tens of thousands of UK students marched against the tripling of university tuition fees. Students occupied the Conservative Party headquarters in London. While they did not stop the fee increase, the protests showed a generation newly engaged with politics.</div>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Section 4 — Key Sources & Research</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-fact-box" style="margin-bottom:1.5rem">
+      <h4>Academic & Institutional Sources Used in This Section</h4>
+      <ul>
+        <li>UNICEF Innocenti — "Youth, Protests and the Polycrisis" (2024)</li>
+        <li>ScienceDirect — "Why do youth participate in climate activism?" (2021)</li>
+        <li>Youth Research and Evaluation eXchange — Young Adults' Protest Participation and Mental Health (2023)</li>
+        <li>Tandfonline — "The young protester: the impact of belongingness needs on political engagement"</li>
+        <li>ScienceDirect — "Reasons youth engage in activism programs: Social justice or sanctuary?" (2017)</li>
+        <li>Greater Good Science Center, UC Berkeley — "Why Activism is Natural for Young People" (2020)</li>
+      </ul>
+    </div>
+
+    <div class="resource-section" style="margin-bottom:3rem">
+      <h4>📚 Videos</h4>
+      <div class="resource-links">
+        <a class="resource-link link-video" href="https://www.youtube.com/watch?v=KAJsdgTPJpU" target="_blank">▶ TED: How to Make Your Voice Heard</a>
+        <a class="resource-link link-video" href="https://www.youtube.com/watch?v=sxCEbx_nb7U" target="_blank">▶ The Psychology of Protest</a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p><strong>Voice of a Generation — Why Protest? Section</strong><br>
+    Sources: UNICEF Innocenti (2024), ScienceDirect, Journal of Social Work, Berkeley Greater Good, Tandfonline.<br>For educational use only.</p>
+  </footer>
+</div><!-- end why page -->
+
+
+<!-- ═══════════════════ RESOURCES PAGE ═══════════════════ -->
+<div id="page-resources" class="page">
+
+  <div class="page-hero" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+    <div class="page-hero-inner">
+      <p class="breadcrumb" style="color:rgba(255,255,255,0.5)" onclick="showPage('home')">Home</p>
+      <h1 style="color:white">📚 Resources & <em style="color:var(--gold)">Further Learning</em></h1>
+      <p style="color:rgba(255,255,255,0.7)">Videos, articles, and credible websites to help you learn more about protest movements, civil rights, and civic engagement.</p>
+    </div>
+  </div>
+
+  <div class="protests-container">
+
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Video Resources</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">📺</div>
+        <div class="why-title">Emma González's 6-Minute Silence (MFOL)</div>
+        <div class="why-text">One of the most powerful protest speeches of the 21st century. Emma González stood silently for the exact duration of the Parkland shooting. Essential viewing for any student studying protest and civic voice.</div>
+        <br>
+        <a class="resource-link link-video" href="https://www.youtube.com/watch?v=WOyWotruXR0" target="_blank">▶ Watch on YouTube</a>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📺</div>
+        <div class="why-title">Greta Thunberg — UN Climate Speech (2019)</div>
+        <div class="why-text">"How dare you." Greta Thunberg's address to world leaders at the UN Climate Action Summit became one of the most-watched speeches in climate history. A powerful example of youth voice in global politics.</div>
+        <br>
+        <a class="resource-link link-video" href="https://www.youtube.com/watch?v=TMrtLsQbaok" target="_blank">▶ Watch on YouTube</a>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📺</div>
+        <div class="why-title">BLM UK Protests 2020</div>
+        <div class="why-text">A documentary overview of how and why the Black Lives Matter movement took hold in the United Kingdom, including the Edward Colston statue controversy and the "Kill the Bill" protests.</div>
+        <br>
+        <a class="resource-link link-video" href="https://www.youtube.com/watch?v=YG8GjlLbbvs" target="_blank">▶ Watch on YouTube</a>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📺</div>
+        <div class="why-title">History of Protest in America</div>
+        <div class="why-text">A broader historical documentary covering key American protest movements from the civil rights era to the present day — essential context for understanding modern movements.</div>
+        <br>
+        <a class="resource-link link-video" href="https://www.youtube.com/watch?v=LQAWVKeNlU0" target="_blank">▶ Watch on YouTube</a>
+      </div>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Credible Articles & Websites</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="protest-fact-box" style="margin-bottom:2rem">
+      <h4>Official & Academic Sources</h4>
+      <ul>
+        <li><strong>UK Parliament Library</strong> — BLM Protests Report: commonslibrary.parliament.uk</li>
+        <li><strong>UNICEF Innocenti</strong> — "Youth, Protests and the Polycrisis" (2024): unicef.org/innocenti</li>
+        <li><strong>Institute of Race Relations (UK)</strong> — irr.org.uk</li>
+        <li><strong>March for Our Lives</strong> — Official site: marchforourlives.org</li>
+        <li><strong>Rutgers CYPP</strong> — March for Our Lives analysis: cypp.rutgers.edu</li>
+        <li><strong>Fridays for Future</strong> — fridaysforfuture.org</li>
+        <li><strong>Extinction Rebellion UK</strong> — extinctionrebellion.uk</li>
+        <li><strong>United We Dream (DACA)</strong> — unitedwedream.org</li>
+        <li><strong>Berkeley Greater Good Science Center</strong> — greatergood.berkeley.edu</li>
+      </ul>
+    </div>
+
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">For Students: Discussion Questions</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card" style="border-left:4px solid var(--blue)">
+        <div class="why-icon">💭</div>
+        <div class="why-title">Question 1: Tactics</div>
+        <div class="why-text">Compare the tactics of Just Stop Oil (road blockades, disrupting sports events) with March for Our Lives (peaceful marches, speeches). Which do you think is more effective, and why? What are the risks and benefits of each approach?</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid var(--red)">
+        <div class="why-icon">💭</div>
+        <div class="why-title">Question 2: Power</div>
+        <div class="why-text">The Parkland students organised a march of up to 2 million people within 6 weeks of a school shooting. What does this tell us about the relationship between emotion, motivation, and political power? Could they have achieved the same without social media?</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid var(--green)">
+        <div class="why-icon">💭</div>
+        <div class="why-title">Question 3: Democracy</div>
+        <div class="why-text">During Brexit, 75% of young voters voted Remain — but the Leave side won. Is it democratic to protest a democratic vote? What does this tell us about the tensions between majority rule and minority rights in a democracy?</div>
+      </div>
+      <div class="why-card" style="border-left:4px solid var(--purple)">
+        <div class="why-icon">💭</div>
+        <div class="why-title">Question 4: Personal</div>
+        <div class="why-text">Looking at the movements covered in this site — BLM, climate protests, gun control, DACA — which one do you think you would most likely have participated in, and why? What would have motivated you? What would have held you back?</div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem"></div>
+
+  </div>
+
+  <footer>
+    <p><strong>Voice of a Generation — Resources</strong><br>
+    All sources are credible, publicly available, and appropriate for educational use at secondary school level.<br>
+    Created for high school students studying English-speaking countries' civil society and protest culture.</p>
+  </footer>
+</div><!-- end resources page -->
+
+
+<!-- ═══════════════════ VOCABULARY PAGE ═══════════════════ -->
+<div id="page-vocab" class="page">
+
+  <div class="page-hero" style="background:linear-gradient(135deg,#eef4ff 0%,#dce9ff 100%)">
+    <div class="page-hero-inner">
+      <p class="breadcrumb" onclick="showPage('home')">Home</p>
+      <h1 style="color:var(--blue)">📖 Types of Protest &amp; <em style="color:var(--blue-light)">Key Vocabulary</em></h1>
+      <p>Before diving into protest movements, it helps to know the language. This page covers the main types of protest and the concepts and vocabulary you need when reading, writing, or talking about demonstrations.</p>
+    </div>
+  </div>
+
+  <div class="protests-container">
+
+    <!-- Types of Protest -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Types of Protest</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <p style="font-size:1rem;color:var(--gray);line-height:1.7;margin-bottom:2rem;">Protest takes many forms. Understanding the different types helps you compare movements and discuss their strengths and weaknesses.</p>
+
+    <div class="types-grid">
+      <div class="type-card">
+        <div class="type-title">🚶 March / Demonstration</div>
+        <div class="type-desc">A large group walks through public spaces carrying signs and chanting slogans. The most common form of protest. Examples: March for Our Lives (2018), BLM London marches (2020), Pro-Palestine marches (2023).</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">🪧 Vigil</div>
+        <div class="type-desc">A quiet, often candlelit gathering to mourn or honour someone. Usually peaceful and solemn rather than confrontational. Example: Sarah Everard vigil at Clapham Common (2021).</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">🪑 Sit-in</div>
+        <div class="type-desc">Protesters occupy a public or private space and refuse to leave. A classic tactic of the US Civil Rights Movement (Greensboro lunch counter, 1960) and DACA student activists.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">🏫 School / Student Strike</div>
+        <div class="type-desc">Students refuse to attend school as a form of protest. Made famous globally by Greta Thunberg's Fridays for Future movement from 2018 onwards.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">🛣️ Blockade / Road Block</div>
+        <div class="type-desc">Protesters physically obstruct roads, bridges, or entrances to stop normal activity and force attention. Used by Just Stop Oil and Extinction Rebellion. Often leads to arrests.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">🏕️ Encampment</div>
+        <div class="type-desc">Protesters set up a long-term camp in a public space (usually a university campus or park). Used during Pro-Palestine protests at UK and US universities in 2024.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">🎨 Direct Action</div>
+        <div class="type-desc">Any protest that directly disrupts or interferes with the target. Throwing paint at statues, spray-painting buildings, or toppling monuments (e.g. Edward Colston statue, Bristol 2020) all count as direct action.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">📱 Digital Activism / Hashtag Campaign</div>
+        <div class="type-desc">Using social media platforms to raise awareness, organise, and put pressure on authorities. Examples: #BlackLivesMatter, #NeverAgain, #HereToStay (DACA). Can amplify street protests enormously.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">📢 Rally / Public Meeting</div>
+        <div class="type-desc">A gathering at a fixed location where speakers address a crowd. Often the centrepiece of a larger protest day. The March for Our Lives Washington D.C. rally (2018) featured dozens of student speakers.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">🚫 Boycott</div>
+        <div class="type-desc">Refusing to buy, use, or participate in something as a form of protest. Example: boycotts of certain brands during BLM; calls to boycott universities with ties to Israeli institutions (2024).</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">⚖️ Civil Disobedience</div>
+        <div class="type-desc">Deliberately breaking a law as a form of protest, accepting the legal consequences. Used by Extinction Rebellion and Just Stop Oil. Rooted in the philosophy of Henry David Thoreau and practised by Gandhi and Martin Luther King Jr.</div>
+      </div>
+      <div class="type-card">
+        <div class="type-title">🖊️ Petition</div>
+        <div class="type-desc">Collecting signatures to formally request that authorities take action. Often combined with marches. Online petitions (Change.org, UK Parliament petitions) have become a major tool for youth activists.</div>
+      </div>
+    </div>
+
+    <!-- Key Vocabulary -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">Key Vocabulary &amp; Concepts</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <p style="font-size:1rem;color:var(--gray);line-height:1.7;margin-bottom:2rem;">These are the words and ideas you need to understand and discuss protest movements at a high level.</p>
+
+    <div class="vocab-grid">
+
+      <div class="vocab-card">
+        <div class="vocab-term">activism</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">The use of campaigning, protests, or direct action to bring about political or social change.</div>
+        <div class="vocab-example">"Youth activism has surged in the 21st century, driven by issues like climate change and gun violence."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">civil disobedience</div>
+        <div class="vocab-pos">noun phrase</div>
+        <div class="vocab-def">The deliberate, nonviolent refusal to obey laws, as a form of protest. The person accepts legal punishment to highlight injustice.</div>
+        <div class="vocab-example">"Extinction Rebellion practises civil disobedience by blocking roads and accepting arrest."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">demonstration</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">A public gathering of people to show their support for or opposition to something, often involving marching and chanting.</div>
+        <div class="vocab-example">"Large demonstrations took place across the UK following the murder of George Floyd."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">systemic racism</div>
+        <div class="vocab-pos">noun phrase</div>
+        <div class="vocab-def">Racism that is built into the structures, institutions, and policies of a society, rather than being the prejudice of a single individual.</div>
+        <div class="vocab-example">"The BLM movement called attention to systemic racism in policing and the criminal justice system."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">solidarity</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">Unity and support for a group, especially one that is suffering or facing injustice. Often the reason people join a protest even when they are not directly affected.</div>
+        <div class="vocab-example">"UK protesters marched in solidarity with Black Americans following George Floyd's death."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">freedom of assembly</div>
+        <div class="vocab-pos">noun phrase</div>
+        <div class="vocab-def">The legal right to gather in groups, protest, and demonstrate publicly. Protected under Article 11 of the European Convention on Human Rights and the US First Amendment.</div>
+        <div class="vocab-example">"Laws restricting protest locations have been criticised as a threat to freedom of assembly."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">freedom of speech / expression</div>
+        <div class="vocab-pos">noun phrase</div>
+        <div class="vocab-def">The right to express opinions and ideas without government censorship or punishment. A foundational right in democracies, though it has limits (e.g. hate speech laws).</div>
+        <div class="vocab-example">"Protest signs, speeches, and chants are all protected forms of freedom of expression."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">right to protest</div>
+        <div class="vocab-pos">noun phrase</div>
+        <div class="vocab-def">The legal and democratic right of citizens to publicly express dissent. In the UK, this right has been restricted by the Police, Crime, Sentencing and Courts Act 2022.</div>
+        <div class="vocab-example">"Many campaigners argue that new UK laws undermine the right to protest."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">counter-protest</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">A protest held at the same time and place as another protest, in opposition to it. Both pro- and anti-Brexit protesters, and both pro-Palestine and pro-Israel groups, held counter-protests.</div>
+        <div class="vocab-example">"A counter-protest of several hundred gathered on the other side of the square."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">escalation</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">When a protest becomes more intense, confrontational, or widespread. Can refer to both protesters' tactics and police responses.</div>
+        <div class="vocab-example">"After police moved in, the situation escalated rapidly."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">marginalisation</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">The process by which a group is pushed to the edges of society, denied power, or excluded from decision-making.</div>
+        <div class="vocab-example">"UNICEF research found that youth protests often stem from a sense of marginalisation."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">intersectionality</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">The idea that different forms of discrimination (race, gender, class, sexuality) overlap and interact. Important for understanding why movements like BLM address multiple issues at once.</div>
+        <div class="vocab-example">"Young activists brought an intersectional approach, connecting racism, poverty, and policing."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">political efficacy</div>
+        <div class="vocab-pos">noun phrase</div>
+        <div class="vocab-def">The belief that one's actions can make a difference in political outcomes. Higher political efficacy makes people more likely to protest or vote.</div>
+        <div class="vocab-example">"March for Our Lives boosted political efficacy among a generation of young Americans."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">disproportionate force</div>
+        <div class="vocab-pos">noun phrase</div>
+        <div class="vocab-def">When police or authorities use more force than is considered necessary to control a situation. Often cited as a trigger for further protests.</div>
+        <div class="vocab-example">"The arrest of women at the Sarah Everard vigil was widely condemned as disproportionate force."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">coalition</div>
+        <div class="vocab-pos">noun</div>
+        <div class="vocab-def">A group of different organisations or individuals joining together for a shared cause. Large protest movements are usually coalitions of many smaller groups.</div>
+        <div class="vocab-example">"The climate march brought together a coalition of student groups, unions, and NGOs."</div>
+      </div>
+
+      <div class="vocab-card">
+        <div class="vocab-term">grassroots movement</div>
+        <div class="vocab-pos">noun phrase</div>
+        <div class="vocab-def">A movement that is organised from the bottom up — by ordinary people, not politicians or established organisations. Many youth protest movements begin as grassroots campaigns.</div>
+        <div class="vocab-example">"Fridays for Future began as a grassroots movement started by a single teenager."</div>
+      </div>
+
+      <div class="vocab-card" style="border-top-color:var(--red)">
+        <div class="vocab-term">#NeverAgain</div>
+        <div class="vocab-pos">hashtag / slogan</div>
+        <div class="vocab-def">The rallying cry of the Parkland survivors and March for Our Lives movement, demanding an end to gun violence in American schools.</div>
+        <div class="vocab-example">"The crowd on Pennsylvania Avenue held signs with one common message: 'Never Again.'"</div>
+      </div>
+
+      <div class="vocab-card" style="border-top-color:var(--green)">
+        <div class="vocab-term">climate emergency</div>
+        <div class="vocab-pos">noun phrase</div>
+        <div class="vocab-def">A declaration by a government or organisation that urgent action is needed to address climate change. The UK Parliament declared a climate emergency in May 2019, partly in response to XR protests.</div>
+        <div class="vocab-example">"Dozens of local councils declared climate emergencies following Extinction Rebellion protests."</div>
+      </div>
+
+    </div>
+
+    <div class="note-box">
+      <strong>💡 Language Tip:</strong> When writing or speaking about protests, try to use a range of vocabulary rather than repeating the same words. Instead of always saying "protest," try: <em>demonstration, march, rally, vigil, strike, sit-in, direct action, campaign, mobilisation</em>. Instead of "people," try: <em>demonstrators, activists, campaigners, protesters, marchers, advocates</em>.
+    </div>
+
+  </div>
+
+  <footer>
+    <p><strong>Voice of a Generation — Vocabulary &amp; Types of Protest</strong><br>
+    For educational use at secondary school level.</p>
+  </footer>
+  <div class="site-attribution">
+    <p>Created by <strong>Barbara Anna Zielonka</strong> — Nannestad High School</p>
+  </div>
+</div><!-- end vocab page -->
+
+<!-- ═══════════════════ PODCASTS PAGE ═══════════════════ -->
+<div id="page-podcasts" class="page">
+
+  <div class="page-hero" style="background:linear-gradient(135deg,#0f0e0d 0%,#1e1b18 100%)">
+    <div class="page-hero-inner">
+      <p class="breadcrumb" style="color:rgba(255,255,255,0.4)" onclick="showPage('home')">Home</p>
+      <h1 style="color:white;font-family:'Playfair Display',serif;font-size:clamp(2.2rem,5vw,3.8rem);font-weight:900;line-height:1.1;margin-bottom:1rem;">🎙 Podcasts About <em style="color:var(--gold)">Protest &amp; Democracy</em></h1>
+      <p style="font-size:1.05rem;color:rgba(255,255,255,0.65);max-width:720px;line-height:1.7;">A curated list of podcasts that discuss protest movements, demonstrations, and the right to protest — grouped by country. All are in English and suitable for high school students.</p>
+    </div>
+  </div>
+
+  <div class="protests-container">
+
+    <!-- UK Podcasts -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">🇬🇧 United Kingdom</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="podcast-card">
+      <div class="podcast-flag">🎓</div>
+      <div>
+        <div class="podcast-title">BBC Learning English — "Israel Protests" (Learning English from the News)</div>
+        <div class="podcast-meta">BBC • English Language Learning • Short Episode</div>
+        <div class="podcast-desc">A short, carefully scaffolded episode about protests, specifically designed for English language learners. Includes key vocabulary, explanations, and transcripts — perfect if you want to improve your English while learning about protest. This episode focuses on protests connected to the Israel conflict.</div>
+        <a class="podcast-link" href="https://www.bbc.com/audio/play/p0hnk94y" target="_blank">🎧 Listen on BBC</a>
+      </div>
+    </div>
+
+    <div class="podcast-card">
+      <div class="podcast-flag">📻</div>
+      <div>
+        <div class="podcast-title">BBC Learning English — Learning English from the News (Full Feed)</div>
+        <div class="podcast-meta">BBC • English Language Learning • Regular Episodes</div>
+        <div class="podcast-desc">The main BBC Learning English podcast feed, where you can browse many protest-related episodes with full transcripts. An excellent ongoing resource for students who want to follow news about demonstrations while also building English vocabulary. Episodes are short, clear, and accessible.</div>
+        <a class="podcast-link" href="https://www.bbc.co.uk/learningenglish/podcasts" target="_blank">🎧 Browse All Episodes</a>
+      </div>
+    </div>
+
+    <div class="podcast-card">
+      <div class="podcast-flag">🌍</div>
+      <div>
+        <div class="podcast-title">BBC World Service — The Global Story: "What's Behind the UK Riots?"</div>
+        <div class="podcast-meta">BBC World Service • Current Affairs • In-Depth</div>
+        <div class="podcast-desc">A deeper BBC World Service episode examining the 2024 UK riots — including the role of misinformation, social media, and far-right mobilisation. Particularly useful for understanding how protests can be distorted or hijacked, and the difference between a protest and a riot.</div>
+        <a class="podcast-link" href="https://www.bbc.com/audio/play/w3ct6dt9" target="_blank">🎧 Listen on BBC</a>
+      </div>
+    </div>
+
+    <div class="podcast-card">
+      <div class="podcast-flag">⚖️</div>
+      <div>
+        <div class="podcast-title">openDemocracy — "How Protest Became a Crime in the UK"</div>
+        <div class="podcast-meta">openDemocracy • Law &amp; Democracy • Analysis</div>
+        <div class="podcast-desc">A focused podcast episode examining how new UK laws — particularly the Police, Crime, Sentencing and Courts Act 2022 — restrict the right to protest and what this means for democracy. Important context for understanding why "Kill the Bill" protests were themselves sparked by anti-protest legislation.</div>
+        <a class="podcast-link" href="https://www.opendemocracy.net/en/podcasts/in-solidarity-podcast/protest-bill-conservatives-labour-starmer-johnson/" target="_blank">🎧 Listen on openDemocracy</a>
+      </div>
+    </div>
+
+    <div class="podcast-card">
+      <div class="podcast-flag">🏛️</div>
+      <div>
+        <div class="podcast-title">"Protests in the UK with Professor David Mead"</div>
+        <div class="podcast-meta">Apple Podcasts • Law &amp; Human Rights • Expert Interview</div>
+        <div class="podcast-desc">An in-depth academic podcast episode with Professor David Mead, a leading expert on protest law and human rights in the UK. He explains how the legal right to protest works in Britain, how police powers have expanded, and what protesters can and cannot do legally. Excellent for students interested in the legal dimensions of protest.</div>
+        <a class="podcast-link" href="https://podcasts.apple.com/us/podcast/protests-series-protests-in-the-uk-with-professor/id1555761151?i=1000657160345" target="_blank">🎧 Listen on Apple Podcasts</a>
+      </div>
+    </div>
+
+    <!-- US Podcasts -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">🇺🇸 United States</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="podcast-card">
+      <div class="podcast-flag">🗽</div>
+      <div>
+        <div class="podcast-title">Clear and Present Danger — "Free Speech and Racial Justice: Friends or Foes?"</div>
+        <div class="podcast-meta">Justitia • Free Speech &amp; Democracy • In-Depth Discussion</div>
+        <div class="podcast-desc">This episode of the <em>Clear and Present Danger</em> podcast discusses the relationship between free speech principles and the Black Lives Matter protest movement. It explores whether protecting free speech helps or hinders racial justice — a genuine and important tension in democratic societies. Thoughtful, balanced, and academically grounded.</div>
+        <a class="podcast-link" href="https://justitia-int.org/clear-and-present-danger-free-speech-and-racial-justice-friends-or-foes/" target="_blank">🎧 Listen at Justitia</a>
+      </div>
+    </div>
+
+    <div class="podcast-card">
+      <div class="podcast-flag">📺</div>
+      <div>
+        <div class="podcast-title">PBS NewsHour — "America, Interrupted" (Series)</div>
+        <div class="podcast-meta">PBS • US News &amp; Politics • Multiple Episodes</div>
+        <div class="podcast-desc">A PBS NewsHour special series with multiple episodes covering US political conflict, including protests. You can pick the episodes most relevant to your studies. PBS is one of the most credible and neutral US public broadcasters — a reliable source for understanding American political life.</div>
+        <a class="podcast-link" href="https://www.pbs.org/newshour/podcasts/special-series" target="_blank">🎧 Browse Episodes on PBS</a>
+      </div>
+    </div>
+
+    <!-- Australia & Global -->
+    <div class="chapter">
+      <div class="chapter-label">
+        <div class="chapter-line"></div>
+        <div class="chapter-text">🇦🇺 Australia &amp; Global</div>
+        <div class="chapter-line"></div>
+      </div>
+    </div>
+
+    <div class="podcast-card">
+      <div class="podcast-flag">🦘</div>
+      <div>
+        <div class="podcast-title">The Stutchbury Sessions — "Protests, Polarisation and Immigration"</div>
+        <div class="podcast-meta">Centre for Independent Studies (Australia) • Current Affairs • Australian Perspective</div>
+        <div class="podcast-desc">An Australian conversation exploring recent protest marches, immigration debates, and political polarisation in Australia and beyond. Useful for seeing how similar themes — identity, immigration, democratic norms — play out in an Australian context, and for comparing how protest culture differs across English-speaking countries.</div>
+        <a class="podcast-link" href="https://www.cis.org.au/commentary/podcast/protests-polarisation-and-immigration-the-stutchbury-sessions/" target="_blank">🎧 Listen at CIS</a>
+      </div>
+    </div>
+
+    <div class="podcast-card">
+      <div class="podcast-flag">🌐</div>
+      <div>
+        <div class="podcast-title">"Protests, Political Violence and Its Alternatives" — with Erica Chenoweth</div>
+        <div class="podcast-meta">Apple Podcasts • Political Science • Academic Expert</div>
+        <div class="podcast-desc">A fascinating academic podcast episode featuring <strong>Erica Chenoweth</strong>, one of the world's leading researchers on protest and civil resistance. Chenoweth's research — drawing on data from hundreds of movements globally — shows that <em>nonviolent protest movements succeed roughly twice as often as violent ones</em>. Essential listening for anyone wanting to understand <em>why</em> protest works (or doesn't). Covers US and international examples.</div>
+        <a class="podcast-link" href="https://podcasts.apple.com/us/podcast/protests-political-violence-and-its-alternatives/id1382983397?i=1000724517919" target="_blank">🎧 Listen on Apple Podcasts</a>
+      </div>
+    </div>
+
+    <div class="note-box" style="margin:2rem 0">
+      <strong>💡 How to Use These Podcasts:</strong> Many of these episodes have transcripts — use them alongside the audio to build both listening and reading skills. Try to note down: What is the main argument? What evidence is used? What vocabulary is new for you? You can also use these podcasts as sources when writing essays about protest.
+    </div>
+
+    <div style="margin-top:3rem"></div>
+
+  </div>
+
+  <footer>
+    <p><strong>Voice of a Generation — Podcasts</strong><br>
+    All podcasts are publicly available and suitable for educational use at secondary school level.</p>
+  </footer>
+  <div class="site-attribution">
+    <p>Created by <strong>Barbara Anna Zielonka</strong> — Nannestad High School</p>
+  </div>
+</div><!-- end podcasts page -->
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
